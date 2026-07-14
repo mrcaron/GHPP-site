@@ -30,7 +30,7 @@ export const SIGNUP_URL = 'https://signup.24-7prayer.com/signup/343adb';
  * key goes in Cloudflare as an environment variable — see README.md.
  * Leave as '' to temporarily run the form without a captcha.
  */
-export const TURNSTILE_SITE_KEY = '';
+export const TURNSTILE_SITE_KEY = '0x4AAAAAAD16jYWv6wfL9rYJ';
 
 /** External movement links (used in header/footer for the brand tie-back). */
 export const LINKS = {
