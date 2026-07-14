@@ -1,0 +1,19 @@
+{
+  "name": "greenhouse-prayer-site",
+  "type": "module",
+  "version": "1.0.0",
+  "description": "The Greenhouse — a 24-7 prayer room in Sun Prairie, WI",
+  "scripts": {
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro"
+  },
+  "dependencies": {
+    "@astrojs/sitemap": "^3.2.1",
+    "@fontsource/inter": "^5.1.0",
+    "@fontsource/montserrat": "^5.1.0",
+    "astro": "^5.1.0"
+  }
+}

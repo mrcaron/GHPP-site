@@ -1,0 +1,8 @@
+# Copy this file to `.dev.vars` for local testing of the contact form with
+# `wrangler pages dev`. NEVER commit the real `.dev.vars` (it's gitignored).
+# In production, set these in the Cloudflare dashboard instead.
+
+CONTACT_TO="mr.caron@icloud.com"
+CONTACT_FROM="noreply@REPLACE-WITH-YOUR-DOMAIN.com"
+RESEND_API_KEY="re_xxxxxxxxxxxxxxxxxxxx"
+TURNSTILE_SECRET="0x_xxxxxxxxxxxxxxxxxxxx"

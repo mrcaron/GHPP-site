@@ -1,0 +1,117 @@
+---
+import { TURNSTILE_SITE_KEY } from '../config';
+---
+
+<form id="contact-form" class="cform" action="/api/contact" method="POST">
+  <div class="cform__row">
+    <div class="cform__field">
+      <label for="cf-name">Your name</label>
+      <input id="cf-name" name="name" type="text" autocomplete="name" required />
+    </div>
+    <div class="cform__field">
+      <label for="cf-email">Your email</label>
+      <input id="cf-email" name="email" type="email" autocomplete="email" required />
+    </div>
+  </div>
+
+  <div class="cform__field">
+    <label for="cf-topic">What's this about?</label>
+    <select id="cf-topic" name="topic">
+      <option value="General">General question</option>
+      <option value="Prayer slot">Asking about a prayer slot</option>
+      <option value="Helping build">I'd like to help build the room</option>
+      <option value="Community">The semi-monthly community gathering</option>
+    </select>
+  </div>
+
+  <div class="cform__field">
+    <label for="cf-message">Message</label>
+    <textarea id="cf-message" name="message" rows="5" required></textarea>
+  </div>
+
+  <!-- Honeypot: real people never fill this in; bots often do. -->
+  <div class="cform__hp" aria-hidden="true">
+    <label for="cf-website">Website</label>
+    <input id="cf-website" name="website" type="text" tabindex="-1" autocomplete="off" />
+  </div>
+
+  {TURNSTILE_SITE_KEY && (
+    <div class="cf-turnstile" data-sitekey={TURNSTILE_SITE_KEY} data-theme="light"></div>
+  )}
+
+  <button type="submit" class="btn btn--primary btn--lg cform__submit">Send message</button>
+
+  <p id="cf-status" class="cform__status" role="status" aria-live="polite"></p>
+</form>
+
+{TURNSTILE_SITE_KEY && (
+  <script is:inline src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+)}
+
+<script>
+  const form = document.getElementById('contact-form') as HTMLFormElement | null;
+  const status = document.getElementById('cf-status');
+  if (form && status) {
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const btn = form.querySelector('button[type="submit"]') as HTMLButtonElement;
+      btn.disabled = true;
+      status.textContent = 'Sending…';
+      status.className = 'cform__status is-sending';
+      try {
+        const res = await fetch('/api/contact', {
+          method: 'POST',
+          body: new FormData(form),
+          headers: { Accept: 'application/json' },
+        });
+        if (res.ok) {
+          form.reset();
+          status.textContent = 'Thank you — your message is on its way. We’ll be in touch soon.';
+          status.className = 'cform__status is-ok';
+        } else {
+          const data = await res.json().catch(() => ({}));
+          status.textContent = data.error || 'Something went wrong. Please try again, or email us directly.';
+          status.className = 'cform__status is-err';
+        }
+      } catch {
+        status.textContent = 'Network error. Please try again in a moment.';
+        status.className = 'cform__status is-err';
+      } finally {
+        btn.disabled = false;
+        // Reset Turnstile so a fresh token is required for the next send.
+        (window as any).turnstile?.reset?.();
+      }
+    });
+  }
+</script>
+
+<style>
+  .cform { display: grid; gap: 1.1rem; }
+  .cform__row { display: grid; gap: 1.1rem; }
+  @media (min-width: 620px) { .cform__row { grid-template-columns: 1fr 1fr; } }
+  .cform__field { display: grid; gap: 0.4rem; }
+  .cform label {
+    font-family: var(--font-head); font-weight: 600; font-size: 0.9rem; color: var(--ink);
+  }
+  .cform input,
+  .cform select,
+  .cform textarea {
+    font-family: var(--font-body); font-size: 1rem; color: var(--ink);
+    padding: 0.8rem 0.9rem;
+    border: 1px solid var(--line); border-radius: var(--radius-sm);
+    background: var(--paper-2); width: 100%;
+  }
+  .cform input:focus,
+  .cform select:focus,
+  .cform textarea:focus {
+    outline: none; border-color: var(--teal);
+    box-shadow: 0 0 0 3px rgba(60, 122, 137, 0.18);
+  }
+  .cform textarea { resize: vertical; }
+  .cform__hp { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
+  .cform__submit { justify-self: start; }
+  .cform__status { margin: 0; font-weight: 600; min-height: 1.2em; }
+  .cform__status.is-ok { color: var(--leaf-dark); }
+  .cform__status.is-err { color: var(--coral-dark); }
+  .cform__status.is-sending { color: var(--ink-soft); }
+</style>

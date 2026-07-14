@@ -1,0 +1,145 @@
+---
+import Base from '../layouts/Base.astro';
+import { SITE, SIGNUP_URL, LOCATION } from '../config';
+
+const expect = [
+  { icon: '📝', title: 'Walls made for prayer', text: 'The walls are covered in brown paper — write, draw, or paint your prayers right onto them, or leave one on a sticky note. Markers and pens are provided.' },
+  { icon: '🌱', title: 'A floor of grass', text: 'The floor is artificial grass — a nod to the garden where God first met his people, and to the growth we hope for here.' },
+  { icon: '🪑', title: 'Simple comfort', text: 'Comfortable chairs, and prayer stations that may be set up to gently guide your time. There are no windows, so the room stays quiet and private.' },
+  { icon: '☕', title: 'Tea, coffee & water', text: 'A mini fridge with cold water, a kettle and tea, and a Keurig for coffee — with mugs and a bin for the ones you use. Help yourself.' },
+  { icon: '🌡️', title: 'Set your own climate', text: 'There is an AC/heat unit — please leave it where it is, but set it to whatever temperature feels comfortable for you.' },
+  { icon: '🔒', title: 'Private and secure', text: 'The door at the top of the stairs locks from the inside with a key, so the room is entirely yours for your hour.' },
+];
+
+const guidelines = [
+  'Come as you are — there is nothing to prepare and no “right” way to pray.',
+  'The hour is yours: sit in silence, read, write on the walls, play music quietly, or simply rest.',
+  'Please leave the space as you found it — tidy your mugs into the bin and take any trash with you.',
+  'Honor the next person’s hour by finishing on time and locking up as instructed.',
+  'Treat the room, and everyone who prays here, with gentleness and respect.',
+  'If anything is wrong (a spill, something broken, supplies run low), let us know via the contact form.',
+];
+---
+
+<Base title="Visit the room" description={`How to visit The Greenhouse prayer room in ${SITE.city}, ${SITE.regionName} — access, what to expect, and guidelines for your hour.`}>
+  <section class="section">
+    <div class="container measure">
+      <p class="eyebrow">Plan your visit</p>
+      <h1>Visiting The Greenhouse</h1>
+      <p class="lede">
+        The Greenhouse is a detached garage loft in a quiet {SITE.city} neighborhood,
+        set aside entirely for prayer. Here's everything you need to know before you come.
+      </p>
+    </div>
+  </section>
+
+  <!-- Location (city-level only) -->
+  <section class="section section--paper2" aria-labelledby="loc-h">
+    <div class="container">
+      <div class="visit-loc">
+        <div>
+          <p class="eyebrow">Where it is</p>
+          <h2 id="loc-h">In {SITE.city}, {SITE.region}</h2>
+          <p>
+            The room is in a suburban neighborhood in {SITE.city}, Wisconsin.
+            To protect the space and the family who host it, we share the exact
+            address privately.
+          </p>
+          <div class="notice">
+            <strong>📩 After you book a slot,</strong> we'll email you the exact
+            address, a link for turn-by-turn directions, and the door combination
+            code. Everything you need arrives in that message.
+          </div>
+          <a href={LOCATION.cityMapLink} class="btn btn--teal" target="_blank" rel="noopener">
+            Open {SITE.city} in Google Maps
+          </a>
+        </div>
+        <div class="map-embed">
+          <iframe
+            title={`Map of ${SITE.city}, ${SITE.regionName}`}
+            src={LOCATION.cityMapEmbed}
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+            allowfullscreen></iframe>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Getting in -->
+  <section class="section" aria-labelledby="access-h">
+    <div class="container measure">
+      <p class="eyebrow">Getting in</p>
+      <h2 id="access-h">How access works</h2>
+      <ol class="steps">
+        <li>Come to the <strong>back door of the detached garage</strong>.</li>
+        <li>Open the deadbolt using the <strong>combination code</strong> we email you when you book.</li>
+        <li>Inside, climb the <strong>steep stairs</strong> (more like an attic ladder) up to the loft.</li>
+        <li>At the top there's a door you can <strong>lock from the inside</strong> with the key, so the room is yours and secure for your hour.</li>
+      </ol>
+      <p class="muted">
+        Please keep the code to yourself, and make sure the garage is locked again when you leave.
+      </p>
+    </div>
+  </section>
+
+  <!-- What to expect -->
+  <section class="section section--paper2" aria-labelledby="expect-h">
+    <div class="container">
+      <p class="eyebrow center">Inside the room</p>
+      <h2 id="expect-h" class="center">What to expect</h2>
+      <div class="grid grid--3" style="margin-top: 2rem;">
+        {expect.map((e) => (
+          <div class="card feature">
+            <div class="feature__icon" aria-hidden="true">{e.icon}</div>
+            <h3>{e.title}</h3>
+            <p>{e.text}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Guidelines -->
+  <section class="section" aria-labelledby="guide-h">
+    <div class="container measure">
+      <p class="eyebrow">For a great experience</p>
+      <h2 id="guide-h">A few gentle guidelines</h2>
+      <ul class="guidelines">
+        {guidelines.map((g) => <li>{g}</li>)}
+      </ul>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="section--tight section--ink center" style="padding-block: 3rem;">
+    <div class="container">
+      <h2>Ready to come and pray?</h2>
+      <a href={SIGNUP_URL} class="btn btn--primary btn--lg" target="_blank" rel="noopener"
+         style="margin-top: 0.5rem;">
+        Sign up for a prayer slot
+      </a>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .visit-loc { display: grid; gap: 2rem; align-items: center; }
+  @media (min-width: 860px) { .visit-loc { grid-template-columns: 1fr 1fr; } }
+  .notice {
+    background: rgba(242, 216, 118, 0.22);
+    border: 1px solid rgba(214, 74, 67, 0.25);
+    border-left: 4px solid var(--coral);
+    border-radius: var(--radius-sm);
+    padding: 1rem 1.1rem; margin: 1.2rem 0;
+  }
+  .steps { padding-left: 1.2rem; display: grid; gap: 0.8rem; }
+  .steps li { padding-left: 0.3rem; }
+  .muted, .visit-loc .muted { color: var(--ink-soft); font-size: 0.95rem; }
+  .feature { display: flex; flex-direction: column; gap: 0.4rem; }
+  .feature__icon { font-size: 2rem; }
+  .feature h3 { margin: 0.2rem 0 0; }
+  .feature p { margin: 0; color: var(--ink-soft); }
+  .guidelines { display: grid; gap: 0.9rem; padding-left: 1.2rem; }
+  .guidelines li { padding-left: 0.3rem; }
+</style>

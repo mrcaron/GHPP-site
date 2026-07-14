@@ -1,0 +1,22 @@
+# build output
+dist/
+.output/
+
+# dependencies
+node_modules/
+
+# astro
+.astro/
+
+# environment / secrets — NEVER commit real keys
+.env
+.env.local
+.dev.vars
+
+# os / editor
+.DS_Store
+Thumbs.db
+*.log
+npm-debug.log*
+.vscode/
+.idea/

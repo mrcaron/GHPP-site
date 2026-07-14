@@ -1,0 +1,136 @@
+---
+import Base from '../layouts/Base.astro';
+import AnnouncementCard from '../components/AnnouncementCard.astro';
+import { SITE, SIGNUP_URL, ANNOUNCEMENTS } from '../config';
+---
+
+<Base>
+  <!-- Hero -->
+  <section class="hero">
+    <div class="container hero__inner">
+      <p class="eyebrow">24-7 Prayer · {SITE.city}, {SITE.region}</p>
+      <h1 class="hero__title">The Greenhouse</h1>
+      <p class="hero__lede">
+        A place to encounter God and his love. We tend our hearts like soil —
+        so that seeds of faith can grow into something strong enough to weather
+        the storms and heat outside. Come as you are; you'll find no judgment
+        here, only the God who is, who loves you, and who longs to meet with you.
+      </p>
+      <div class="hero__actions">
+        <a href={SIGNUP_URL} class="btn btn--primary btn--lg" target="_blank" rel="noopener">
+          Sign up for a prayer slot
+        </a>
+        <a href="/visit" class="btn btn--ghost btn--lg">What to expect →</a>
+      </div>
+      <p class="hero__note">Free · Open every hour of the day · One-hour slots</p>
+    </div>
+  </section>
+
+  <!-- Announcements -->
+  <section class="section section--paper2" aria-labelledby="ann-h">
+    <div class="container">
+      <p class="eyebrow center">What's happening</p>
+      <h2 id="ann-h" class="center">Announcements</h2>
+      <div class="grid grid--3" style="margin-top: 2rem;">
+        {ANNOUNCEMENTS.map((a) => (
+          <AnnouncementCard tag={a.tag} title={a.title} body={a.body} cta={a.cta} />
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Why a greenhouse -->
+  <section class="section">
+    <div class="container why">
+      <div class="why__text">
+        <p class="eyebrow">Our vision</p>
+        <h2>Why we call it The Greenhouse</h2>
+        <p>
+          A greenhouse is where seeds become seedlings, and seedlings become
+          plants strong enough to be planted out into the world. We see prayer
+          the same way — a sheltered place to grow roots deep into the love of
+          God before we're sent back out into everyday life.
+        </p>
+        <p>
+          It's also, quite simply, a green house — our green house — with a
+          floor of grass, echoing the garden where God first walked with the
+          people he made. This is an explicitly Christian, ecumenical space:
+          open to every church and to anyone who has never prayed before.
+        </p>
+        <a href="/about" class="btn btn--teal">Read our full story</a>
+      </div>
+      <ul class="why__list card">
+        <li><strong>Safe</strong> — physically, emotionally, and spiritually.</li>
+        <li><strong>Simple</strong> — quiet, unhurried, and yours for the hour.</li>
+        <li><strong>Open</strong> — to seekers, doubters, and lifelong believers alike.</li>
+        <li><strong>Connected</strong> — part of the global 24-7 Prayer movement.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- Gallery placeholder -->
+  <section class="section section--paper2" aria-labelledby="peek-h">
+    <div class="container center">
+      <p class="eyebrow">A peek inside</p>
+      <h2 id="peek-h">Photos coming soon</h2>
+      <p class="lede mx-auto" style="margin-bottom: 2rem;">
+        We're putting the finishing touches on the room. Once it's ready,
+        you'll be able to see it here — brown-paper walls covered in prayers,
+        a grass floor, warm light, and a kettle always on.
+      </p>
+      <div class="grid grid--3 gallery">
+        <div class="gallery__ph">🌱</div>
+        <div class="gallery__ph">🕊️</div>
+        <div class="gallery__ph">☕</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA band -->
+  <section class="section section--ink center">
+    <div class="container">
+      <h2>Take an hour. Meet with God.</h2>
+      <p class="lede mx-auto" style="color: #d8d2c8;">
+        Every slot is a free, private hour in the room — just you (or those you
+        bring) and space to pray however you need to.
+      </p>
+      <a href={SIGNUP_URL} class="btn btn--primary btn--lg" target="_blank" rel="noopener"
+         style="margin-top: 1rem;">
+        Sign up for a prayer slot
+      </a>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .hero {
+    background:
+      radial-gradient(120% 90% at 80% -10%, rgba(242, 216, 118, 0.35), transparent 55%),
+      radial-gradient(120% 90% at 0% 110%, rgba(75, 127, 82, 0.18), transparent 55%),
+      var(--paper);
+    padding-block: clamp(3.5rem, 9vw, 7rem);
+  }
+  .hero__inner { max-width: 760px; }
+  .hero__title { font-size: clamp(2.8rem, 8vw, 5rem); margin-bottom: 0.3em; }
+  .hero__lede { font-size: clamp(1.15rem, 2.4vw, 1.4rem); color: var(--ink-soft); max-width: 60ch; }
+  .hero__actions { display: flex; flex-wrap: wrap; gap: 0.9rem; margin-top: 1.8rem; }
+  .hero__note {
+    margin-top: 1.2rem; font-family: var(--font-head); font-weight: 600;
+    font-size: 0.9rem; color: var(--teal-dark);
+  }
+
+  .why { display: grid; gap: 2.2rem; align-items: start; }
+  @media (min-width: 860px) { .why { grid-template-columns: 1.5fr 1fr; } }
+  .why__list { list-style: none; margin: 0; padding: 1.6rem; display: grid; gap: 0.9rem; }
+  .why__list li { padding-left: 1.4rem; position: relative; }
+  .why__list li::before {
+    content: '🌿'; position: absolute; left: 0; top: 0; font-size: 0.9rem;
+  }
+
+  .gallery__ph {
+    display: grid; place-items: center;
+    aspect-ratio: 4 / 3; font-size: 3rem;
+    background: linear-gradient(135deg, #eef1e9, #e7ede4);
+    border: 1px dashed var(--line); border-radius: var(--radius); color: #7c8a76;
+  }
+</style>

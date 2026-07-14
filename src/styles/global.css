@@ -1,0 +1,198 @@
+/* ==========================================================================
+   The Greenhouse — global styles & design tokens
+   Palette adapted from 24-7 Prayer for brand unity, warmed toward the
+   "greenhouse / garden" idea (living green + warm paper).
+   ========================================================================== */
+
+:root {
+  /* Brand colors (from 24-7 Prayer) */
+  --coral: #ec5d56;        /* primary CTA */
+  --coral-dark: #d64a43;
+  --teal: #3c7a89;         /* secondary */
+  --teal-dark: #2f606c;
+  --gold: #f2d876;         /* accent / highlight */
+
+  /* Greenhouse greens (ties to the artificial-grass floor + growth theme) */
+  --leaf: #4b7f52;
+  --leaf-dark: #3a6640;
+
+  /* Neutrals */
+  --ink: #252525;          /* body text */
+  --ink-soft: #4a4a4a;
+  --paper: #f6f1ea;        /* warm background */
+  --paper-2: #ffffff;
+  --line: #e4ddd2;         /* hairline borders */
+  --white: #ffffff;
+
+  /* Typography */
+  --font-head: 'Montserrat', system-ui, sans-serif;
+  --font-body: 'Inter', system-ui, -apple-system, sans-serif;
+
+  /* Layout */
+  --maxw: 1080px;
+  --radius: 14px;
+  --radius-sm: 8px;
+  --shadow: 0 10px 30px rgba(37, 37, 37, 0.08);
+  --shadow-lg: 0 20px 50px rgba(37, 37, 37, 0.14);
+}
+
+/* --- Reset-ish ----------------------------------------------------------- */
+*,
+*::before,
+*::after { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  * { animation-duration: 0.001ms !important; transition-duration: 0.001ms !important; }
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-body);
+  color: var(--ink);
+  background: var(--paper);
+  line-height: 1.65;
+  font-size: 1.05rem;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+img { max-width: 100%; height: auto; display: block; }
+
+h1, h2, h3, h4 {
+  font-family: var(--font-head);
+  font-weight: 700;
+  line-height: 1.15;
+  color: var(--ink);
+  margin: 0 0 0.5em;
+  letter-spacing: -0.01em;
+}
+h1 { font-size: clamp(2.1rem, 5vw, 3.4rem); font-weight: 800; }
+h2 { font-size: clamp(1.6rem, 3.5vw, 2.3rem); }
+h3 { font-size: clamp(1.2rem, 2.5vw, 1.45rem); }
+
+p { margin: 0 0 1.1em; }
+
+a { color: var(--teal-dark); text-underline-offset: 3px; }
+a:hover { color: var(--coral); }
+
+.eyebrow {
+  font-family: var(--font-head);
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--teal);
+  margin: 0 0 0.6em;
+}
+
+/* --- Layout helpers ------------------------------------------------------ */
+.container {
+  width: 100%;
+  max-width: var(--maxw);
+  margin-inline: auto;
+  padding-inline: clamp(1.1rem, 4vw, 2rem);
+}
+
+.section { padding-block: clamp(3rem, 7vw, 5.5rem); }
+.section--tight { padding-block: clamp(2rem, 4vw, 3rem); }
+.section--paper2 { background: var(--paper-2); }
+.section--ink { background: var(--ink); color: #f3eded; }
+.section--ink h1,
+.section--ink h2,
+.section--ink h3 { color: #fff; }
+
+.lede { font-size: 1.2rem; color: var(--ink-soft); max-width: 60ch; }
+.measure { max-width: 62ch; }
+.center { text-align: center; }
+.mx-auto { margin-inline: auto; }
+
+/* --- Buttons ------------------------------------------------------------- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5em;
+  font-family: var(--font-head);
+  font-weight: 700;
+  font-size: 1rem;
+  line-height: 1;
+  padding: 0.95rem 1.6rem;
+  border-radius: 999px;
+  border: 2px solid transparent;
+  text-decoration: none;
+  cursor: pointer;
+  transition: transform 0.12s ease, background-color 0.15s ease, box-shadow 0.15s ease;
+}
+.btn:hover { transform: translateY(-2px); }
+.btn--primary { background: var(--coral); color: #fff; box-shadow: 0 8px 20px rgba(236, 93, 86, 0.32); }
+.btn--primary:hover { background: var(--coral-dark); color: #fff; }
+.btn--teal { background: var(--teal); color: #fff; }
+.btn--teal:hover { background: var(--teal-dark); color: #fff; }
+.btn--ghost { background: transparent; border-color: currentColor; color: var(--ink); }
+.btn--ghost:hover { background: var(--ink); color: #fff; }
+.btn--lg { padding: 1.15rem 2rem; font-size: 1.1rem; }
+.btn--block { display: flex; width: 100%; justify-content: center; }
+
+/* --- Cards --------------------------------------------------------------- */
+.card {
+  background: var(--paper-2);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 1.6rem;
+  box-shadow: var(--shadow);
+}
+
+.grid { display: grid; gap: 1.4rem; }
+@media (min-width: 720px) {
+  .grid--3 { grid-template-columns: repeat(3, 1fr); }
+  .grid--2 { grid-template-columns: repeat(2, 1fr); }
+}
+
+/* --- Utility ------------------------------------------------------------- */
+.stack > * + * { margin-top: 1rem; }
+.pill {
+  display: inline-block;
+  font-family: var(--font-head);
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--teal-dark);
+  background: rgba(60, 122, 137, 0.12);
+  padding: 0.3rem 0.7rem;
+  border-radius: 999px;
+}
+
+.visually-hidden {
+  position: absolute !important;
+  width: 1px; height: 1px;
+  padding: 0; margin: -1px;
+  overflow: hidden; clip: rect(0 0 0 0);
+  white-space: nowrap; border: 0;
+}
+
+.skip-link {
+  position: absolute;
+  left: -999px;
+  top: 0;
+  background: var(--ink);
+  color: #fff;
+  padding: 0.75rem 1rem;
+  z-index: 200;
+  border-radius: 0 0 var(--radius-sm) 0;
+}
+.skip-link:focus { left: 0; color: #fff; }
+
+/* Map embed wrapper (responsive iframe) */
+.map-embed {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border-radius: var(--radius);
+  overflow: hidden;
+  border: 1px solid var(--line);
+  box-shadow: var(--shadow);
+}
+.map-embed iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }

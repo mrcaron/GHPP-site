@@ -1,0 +1,10 @@
+User-agent: *
+Allow: /
+
+# Note: /welcome and /thank-you are kept out of search via their in-page
+# `noindex` meta tag and sitemap exclusion — NOT via Disallow. Disallowing
+# them here would both advertise the paths and stop crawlers from ever
+# seeing the noindex tag (the classic "blocked but still indexed" leak).
+
+# Update this to your real domain after you buy it:
+Sitemap: https://REPLACE-WITH-YOUR-DOMAIN.com/sitemap-index.xml

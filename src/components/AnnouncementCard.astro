@@ -1,0 +1,34 @@
+---
+interface Props {
+  tag: string;
+  title: string;
+  body: string;
+  cta?: { label: string; href: string; external?: boolean };
+}
+const { tag, title, body, cta } = Astro.props;
+---
+
+<article class="ann card">
+  <span class="pill">{tag}</span>
+  <h3 class="ann__title">{title}</h3>
+  <p class="ann__body">{body}</p>
+  {cta && (
+    <a
+      href={cta.href}
+      class="ann__cta"
+      {...(cta.external ? { target: '_blank', rel: 'noopener' } : {})}
+    >{cta.label} <span aria-hidden="true">→</span></a>
+  )}
+</article>
+
+<style>
+  .ann { display: flex; flex-direction: column; gap: 0.7rem; }
+  .ann__title { margin: 0.3rem 0 0; }
+  .ann__body { margin: 0; color: var(--ink-soft); flex: 1; }
+  .ann__cta {
+    font-family: var(--font-head); font-weight: 700; font-size: 0.95rem;
+    color: var(--coral); text-decoration: none; margin-top: 0.3rem;
+  }
+  .ann__cta:hover { color: var(--coral-dark); }
+  .pill { align-self: flex-start; }
+</style>

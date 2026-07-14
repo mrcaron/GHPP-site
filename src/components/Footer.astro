@@ -1,0 +1,72 @@
+---
+import { SITE, LINKS, SIGNUP_URL } from '../config';
+const year = new Date().getFullYear();
+---
+
+<footer class="site-footer">
+  <div class="container site-footer__grid">
+    <div class="site-footer__brand">
+      <div class="brand__text">The Greenhouse</div>
+      <p class="site-footer__tagline">{SITE.tagline}.</p>
+      <a href={SIGNUP_URL} class="btn btn--primary" target="_blank" rel="noopener">
+        Sign up to pray
+      </a>
+    </div>
+
+    <nav class="site-footer__col" aria-label="Site">
+      <h3 class="site-footer__h">Explore</h3>
+      <a href="/">Home</a>
+      <a href="/visit">Visit the room</a>
+      <a href="/about">About us</a>
+      <a href="/about#contact">Contact us</a>
+    </nav>
+
+    <nav class="site-footer__col" aria-label="The 24-7 Prayer movement">
+      <h3 class="site-footer__h">The movement</h3>
+      <a href={LINKS.prayer247} target="_blank" rel="noopener">24-7 Prayer International</a>
+      <a href={LINKS.prayer247USA} target="_blank" rel="noopener">24-7 Prayer USA</a>
+      <a href={LINKS.prayer247About} target="_blank" rel="noopener">Who we are (24-7)</a>
+      <a href={LINKS.mustardSeed} target="_blank" rel="noopener">Order of the Mustard Seed</a>
+    </nav>
+  </div>
+
+  <div class="container site-footer__base">
+    <a href={LINKS.prayer247} target="_blank" rel="noopener" class="site-footer__247"
+       aria-label="Part of the 24-7 Prayer movement">
+      <span>Part of the</span>
+      <img src="/img/24-7prayer-logo.svg" alt="24-7 Prayer" width="120" height="26" />
+      <span>movement</span>
+    </a>
+    <p class="site-footer__copy">© {year} The Greenhouse · {SITE.city}, {SITE.region}</p>
+  </div>
+</footer>
+
+<style>
+  .site-footer { background: var(--ink); color: #cfcac2; }
+  .site-footer a { color: #e7e2da; text-decoration: none; }
+  .site-footer a:hover { color: var(--gold); }
+  .site-footer__grid {
+    display: grid;
+    gap: 2rem;
+    padding-block: clamp(2.5rem, 5vw, 3.5rem);
+    grid-template-columns: 1fr;
+  }
+  @media (min-width: 720px) {
+    .site-footer__grid { grid-template-columns: 1.6fr 1fr 1fr; }
+  }
+  .brand__text { font-family: var(--font-head); font-weight: 800; font-size: 1.3rem; color: #fff; }
+  .site-footer__tagline { margin: 0.5rem 0 1.2rem; max-width: 34ch; }
+  .site-footer__h {
+    font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.12em;
+    color: var(--gold); margin: 0 0 0.9rem;
+  }
+  .site-footer__col { display: flex; flex-direction: column; gap: 0.6rem; }
+  .site-footer__base {
+    display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between;
+    gap: 1rem; padding-block: 1.4rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.12);
+  }
+  .site-footer__247 { display: inline-flex; align-items: center; gap: 0.6rem; font-size: 0.85rem; }
+  .site-footer__247 img { opacity: 0.95; }
+  .site-footer__copy { margin: 0; font-size: 0.85rem; color: #9a948b; }
+</style>

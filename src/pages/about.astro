@@ -1,0 +1,88 @@
+---
+import Base from '../layouts/Base.astro';
+import ContactForm from '../components/ContactForm.astro';
+import { LINKS, COMMUNITY } from '../config';
+---
+
+<Base title="About & Contact" description="Who we are: a collective of friends oriented around Jesus, creating a space for prayer in Sun Prairie, WI. Get in touch with The Greenhouse.">
+  <section class="section">
+    <div class="container measure">
+      <p class="eyebrow">About us</p>
+      <h1>A collective of friends, oriented around Jesus</h1>
+      <p class="lede">
+        We are a collective of friends endeavoring to be with Jesus, become like
+        him, and do what he did.
+      </p>
+      <p>
+        We create a space for prayer because that is the place where we intend to
+        meet him — to sit at his feet, listen to him, speak with him, gaze at him,
+        and receive from him. The Greenhouse is our attempt to keep that space
+        open, not only for ourselves but for anyone who wants to come.
+      </p>
+      <p>
+        This is an ecumenical, explicitly Christian prayer room. It isn't tied to
+        one church or denomination. It's a place to encounter God and his love —
+        and to cultivate our hearts into fertile soil for real intimacy with him.
+        Whether you have prayed your whole life or have never prayed at all, you
+        are welcome. You will find no judgment of yourself here — only the God who
+        is, who loves you, and who desires to meet with you.
+      </p>
+    </div>
+  </section>
+
+  <section class="section section--paper2" aria-labelledby="movement-h">
+    <div class="container measure">
+      <p class="eyebrow">Where we belong</p>
+      <h2 id="movement-h">Part of something bigger</h2>
+      <p>
+        We are intimately connected to the global
+        <a href={LINKS.prayer247} target="_blank" rel="noopener">24-7 Prayer</a>
+        community — a movement of prayer, mission, and justice reaching into
+        thousands of prayer rooms around the world — and to the
+        <a href={LINKS.mustardSeed} target="_blank" rel="noopener">Order of the Mustard Seed</a>,
+        a way of life shaped by the vows to be with Jesus, become like Jesus,
+        and do what Jesus did.
+      </p>
+      <p>
+        You can read more about the movement we're part of on the
+        <a href={LINKS.prayer247About} target="_blank" rel="noopener">24-7 Prayer “Who we are” page</a>.
+      </p>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="community-h">
+    <div class="container measure">
+      <p class="eyebrow">Our rhythm</p>
+      <h2 id="community-h">A small community, gathering together</h2>
+      <p>{COMMUNITY.blurb}</p>
+      <p>
+        If you'd like to know more about that gathering, just say so in the form
+        below and we'll be in touch.
+      </p>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section id="contact" class="section section--paper2" aria-labelledby="contact-h">
+    <div class="container contact-wrap">
+      <div class="contact-intro">
+        <p class="eyebrow">Get in touch</p>
+        <h2 id="contact-h">Contact us</h2>
+        <p>
+          Questions about praying here, helping build the room, or joining the
+          community? Send us a note and we'll reply by email. We'd love to hear
+          from you.
+        </p>
+      </div>
+      <div class="contact-form card">
+        <ContactForm />
+      </div>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .contact-wrap { display: grid; gap: 2rem; align-items: start; }
+  @media (min-width: 860px) { .contact-wrap { grid-template-columns: 1fr 1.3fr; } }
+  .contact-form { padding: clamp(1.4rem, 3vw, 2rem); }
+</style>
