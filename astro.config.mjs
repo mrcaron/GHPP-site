@@ -1,11 +1,11 @@
 import { defineConfig } from 'astro/config';
 import sitemap from '@astrojs/sitemap';
 
-// IMPORTANT: after you buy your domain, replace the URL below with it,
-// e.g. 'https://thegreenhouseprayer.com'. It is used for SEO canonical
-// URLs and the sitemap. Until then it is a placeholder.
+// Canonical URL for SEO tags + the sitemap. Must be the "www" host since
+// the apex (greenhouse247.org) 301-redirects to www at the Cloudflare edge —
+// keeping this in sync avoids canonical tags pointing at a redirecting URL.
 export default defineConfig({
-  site: 'https://greenhouse247.org',
+  site: 'https://www.greenhouse247.org',
   // Dev-server only: let ngrok tunnels reach `npm run dev`. A leading dot
   // matches any subdomain, so it survives ngrok handing you a new URL each
   // session. This has no effect on the deployed (static) Cloudflare site.

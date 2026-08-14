@@ -6,5 +6,4 @@ Allow: /
 # them here would both advertise the paths and stop crawlers from ever
 # seeing the noindex tag (the classic "blocked but still indexed" leak).
 
-# Update this to your real domain after you buy it:
-Sitemap: https://greenhouse247.org/sitemap-index.xml
+Sitemap: https://www.greenhouse247.org/sitemap-index.xml
