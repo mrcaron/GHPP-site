@@ -77,29 +77,47 @@ export const ANNOUNCEMENTS = [
 
 /**
  * LOCATION — public pages only ever reference the CITY, never the street.
- * The exact address, map, and directions live on /welcome (unlisted, noindex)
- * and are shared by email after someone books a slot.
+ *
+ * The exact address is rendered ONLY on /welcome (unlisted, noindex). To keep
+ * it OUT of this public GitHub repo, the private values are read from
+ * BUILD-TIME environment variables instead of being written here. Set them in
+ * Cloudflare Pages → Settings → Variables and Secrets (type: Plaintext), for
+ * the Production environment:
+ *
+ *   WELCOME_ADDRESS_LINE   e.g. "123 Example St."
+ *   WELCOME_CITY_LINE      e.g. "Sun Prairie, WI 53590"
+ *   WELCOME_MAP_EMBED      the Google Maps "Embed a map" <iframe src> URL
+ *
+ * After adding or changing them, RE-DEPLOY (push, or retry a deployment) so
+ * the build picks them up. When unset, the safe city-level placeholders below
+ * are used. To preview real values locally, set the same vars in your shell
+ * (they are ordinary env vars, read via process.env at build time).
+ *
+ * NOTE: this keeps the address off GitHub, but /welcome has no login — anyone
+ * with the link still sees it (unchanged). The door code stays email-only.
  */
+const proc = (globalThis as { process?: { env?: Record<string, string | undefined> } }).process;
+const env = proc?.env ?? {};
+
+const addressLine = env.WELCOME_ADDRESS_LINE ?? '000 Your Street (set WELCOME_ADDRESS_LINE)';
+const cityLine = env.WELCOME_CITY_LINE ?? 'Sun Prairie, WI 53590';
+const directionsDest = encodeURIComponent(`${addressLine}, ${cityLine}`);
+
 export const LOCATION = {
   // Public, city-level map embed (safe to index). Centered on Sun Prairie.
-  cityMapEmbed:
-    'https://www.google.com/maps?q=Sun+Prairie,+WI&output=embed',
+  cityMapEmbed: 'https://www.google.com/maps?q=Sun+Prairie,+WI&output=embed',
   cityMapLink: 'https://www.google.com/maps/place/Sun+Prairie,+WI',
 
-  // -------------------------------------------------------------------------
-  // PRIVATE — only rendered on the unlisted /welcome page. Fill these in with
-  // your real details. Do NOT put the combo code here; it goes in the email.
-  // -------------------------------------------------------------------------
+  // PRIVATE — rendered only on the unlisted /welcome page, sourced from env vars.
   welcome: {
-    addressLine: '000 Your Street',
-    cityLine: 'Sun Prairie, WI 53590',
-    // Paste a Google Maps "embed" src for your exact address (Share > Embed a map).
-    exactMapEmbed: 'https://www.google.com/maps?q=Sun+Prairie,+WI&output=embed',
-    // Deep links for turn-by-turn directions:
-    googleDirections:
-      'https://www.google.com/maps/dir/?api=1&destination=000+Your+Street+Sun+Prairie+WI+53590',
-    appleDirections:
-      'https://maps.apple.com/?daddr=000+Your+Street+Sun+Prairie+WI+53590',
+    addressLine,
+    cityLine,
+    // Exact-address map embed; falls back to the city map when the var is unset.
+    exactMapEmbed:
+      env.WELCOME_MAP_EMBED ?? 'https://www.google.com/maps?q=Sun+Prairie,+WI&output=embed',
+    // Turn-by-turn deep links, derived from the address above.
+    googleDirections: `https://www.google.com/maps/dir/?api=1&destination=${directionsDest}`,
+    appleDirections: `https://maps.apple.com/?daddr=${directionsDest}`,
   },
 };
 

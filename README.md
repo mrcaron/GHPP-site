@@ -99,18 +99,38 @@ gh repo create greenhouse-site --private --source=. --push
    Redeploy after adding variables.
 
 ### 5. Turn on spam protection (Cloudflare Turnstile — recommended)
-1. Cloudflare dashboard → **Turnstile → Add site** (your domain).
-2. Copy the **Site key** into `TURNSTILE_SITE_KEY` in
+1. Cloudflare dashboard → **Turnstile → Add widget**.
+2. **Hostnames:** add **every** host the site runs on, or the widget throws
+   error `110200` ("domain not allowed") on the ones you miss:
+   - your `*.pages.dev` URL (e.g. `ghpp-site.pages.dev`)
+   - your custom domain, once you have it
+   - `localhost` (for local testing)
+3. Copy the **Site key** into `TURNSTILE_SITE_KEY` in
    [`src/config.ts`](src/config.ts) and commit.
-3. Copy the **Secret key** into the `TURNSTILE_SECRET` Cloudflare variable.
+4. Copy the **Secret key** into the `TURNSTILE_SECRET` Cloudflare variable.
 
 Until you set these, the form still works (protected only by the hidden
 honeypot field).
 
-### 6. Fill in `/welcome`
-Edit `LOCATION.welcome` in [`src/config.ts`](src/config.ts) with your real
-address and map. To get the map embed: Google Maps → search your address →
-**Share → Embed a map → copy the `src="..."` URL**.
+### 6. Set the `/welcome` address (kept OUT of the public repo)
+The exact address is **not** stored in the code — it's read from build-time
+environment variables so it never lands in this public GitHub repo. In
+Cloudflare Pages → **Settings → Variables and Secrets** (type **Plaintext**,
+Production environment), add:
+
+| Name                   | Value                                             |
+| ---------------------- | ------------------------------------------------- |
+| `WELCOME_ADDRESS_LINE` | `123 Example St.`                                 |
+| `WELCOME_CITY_LINE`    | `Sun Prairie, WI 53590`                           |
+| `WELCOME_MAP_EMBED`    | Google Maps → your address → **Share → Embed a map** → copy the `src="..."` URL |
+
+Then **re-deploy** (push, or retry a deployment) so the build bakes them in.
+The Google/Apple directions links are generated automatically from the address.
+When these vars are unset, `/welcome` shows harmless city-level placeholders.
+
+> This keeps the address off GitHub. It does **not** password-protect
+> `/welcome` — anyone with the link still sees it. That's fine because the
+> **door combination code is never on the site** — it goes in the email only.
 
 Then, in your 24-7 Prayer booking confirmation email, include:
 - a link to `https://yourdomain.com/welcome`

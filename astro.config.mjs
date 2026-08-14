@@ -5,7 +5,7 @@ import sitemap from '@astrojs/sitemap';
 // e.g. 'https://thegreenhouseprayer.com'. It is used for SEO canonical
 // URLs and the sitemap. Until then it is a placeholder.
 export default defineConfig({
-  site: 'https://REPLACE-WITH-YOUR-DOMAIN.com',
+  site: 'https://greenhouse247.org',
   // Dev-server only: let ngrok tunnels reach `npm run dev`. A leading dot
   // matches any subdomain, so it survives ngrok handing you a new URL each
   // session. This has no effect on the deployed (static) Cloudflare site.
