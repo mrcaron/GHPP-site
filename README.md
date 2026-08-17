@@ -91,7 +91,7 @@ gh repo create greenhouse-site --private --source=. --push
 
    | Name              | Type   | Value                                   |
    | ----------------- | ------ | --------------------------------------- |
-   | `CONTACT_TO`      | Secret | `mr.caron@icloud.com`                   |
+   | `CONTACT_TO`      | Secret | `YOUR EMAIL ADDR`                       |
    | `CONTACT_FROM`    | Text   | `noreply@yourdomain.com` (verified domain) |
    | `RESEND_API_KEY`  | Secret | `re_...`                                |
    | `TURNSTILE_SECRET`| Secret | (see step 5, optional)                  |

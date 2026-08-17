@@ -7,7 +7,7 @@
  * Configure these in the Cloudflare dashboard
  * (Workers & Pages > your project > Settings > Variables and Secrets):
  *
- *   CONTACT_TO       your inbox, e.g. mr.caron@icloud.com   (kept private here)
+ *   CONTACT_TO       your inbox
  *   CONTACT_FROM     a sender on your verified domain, e.g. noreply@yourdomain.com
  *   RESEND_API_KEY   (secret) from resend.com
  *   TURNSTILE_SECRET (secret) from Cloudflare Turnstile  — optional
