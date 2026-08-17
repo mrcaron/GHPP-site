@@ -93,14 +93,27 @@ export const ANNOUNCEMENTS = [
  * are used. To preview real values locally, set the same vars in your shell
  * (they are ordinary env vars, read via process.env at build time).
  *
- * NOTE: this keeps the address off GitHub, but /welcome has no login — anyone
- * with the link still sees it (unchanged). The door code stays email-only.
+ * NOTE: this keeps the address off GitHub. The page itself has no login —
+ * anyone with the link still sees it — so it's also served at an unguessable
+ * random URL (WELCOME_SLUG below) instead of the predictable "/welcome",
+ * rather than something anyone could type in. The door code stays email-only.
  */
 const proc = (globalThis as { process?: { env?: Record<string, string | undefined> } }).process;
 const env = proc?.env ?? {};
 
 const addressLine = env.WELCOME_ADDRESS_LINE ?? '000 Your Street (set WELCOME_ADDRESS_LINE)';
 const cityLine = env.WELCOME_CITY_LINE ?? 'Sun Prairie, WI 53590';
+
+/**
+ * WELCOME_SLUG — the unguessable path segment the private location page is
+ * served at (e.g. "wtj-9fk2m7q" -> yoursite.com/wtj-9fk2m7q), instead of the
+ * predictable "/welcome". Set it in Cloudflare Pages → Settings → Variables
+ * and Secrets (type: Plaintext, Production environment) to a long random
+ * string — e.g. generate one with `openssl rand -hex 8`. Falls back to
+ * "welcome" for local dev only; only letters, numbers, and hyphens are kept.
+ */
+const rawSlug = env.WELCOME_SLUG ?? 'welcome';
+export const WELCOME_SLUG = rawSlug.replace(/[^a-zA-Z0-9-]/g, '') || 'welcome';
 const directionsDest = encodeURIComponent(`${addressLine}, ${cityLine}`);
 
 export const LOCATION = {

@@ -1,6 +1,13 @@
 ---
 import Base from '../layouts/Base.astro';
-import { SITE, LOCATION } from '../config';
+import { SITE, LOCATION, WELCOME_SLUG } from '../config';
+
+// Only ever generates ONE page, at the unguessable WELCOME_SLUG path — every
+// other single-segment URL (e.g. /foo) has no matching file and 404s.
+export function getStaticPaths() {
+  return [{ params: { welcomeSlug: WELCOME_SLUG } }];
+}
+
 const w = LOCATION.welcome;
 ---
 

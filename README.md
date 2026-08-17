@@ -10,16 +10,19 @@ Cloudflare Pages.
 
 ## Pages
 
-| URL         | Purpose                                                        | Indexed? |
-| ----------- | ------------------------------------------------------------- | -------- |
-| `/`         | Home — vision, announcements, sign-up call to action          | ✅ yes   |
-| `/visit`    | Public visit guide — **city-level** map, access, what to expect | ✅ yes   |
-| `/about`    | Who we are + contact form (`#contact`)                        | ✅ yes   |
-| `/welcome`  | **Unlisted** — exact address, map & directions (link emailed after booking) | 🚫 noindex |
-| `/thank-you`| Contact form success page                                     | 🚫 noindex |
+| URL         | Purpose                                                         | Indexed?   |
+| ----------- | --------------------------------------------------------------- | ---------- |
+| `/`         | Home — vision, announcements, sign-up call to action            | ✅ yes     |
+| `/visit`    | Public visit guide — **city-level** map, access, what to expect | ✅ yes     |
+| `/about`    | Who we are + contact form (`#contact`)                          | ✅ yes     |
+| `/<random-slug>` | **Unlisted, unguessable** — exact address, map & directions (link emailed after booking) | 🚫 noindex |
+| `/thank-you`| Contact form success page                                       | 🚫 noindex |
 
 **Privacy model:** public pages only ever mention the *city*. The exact
-address lives on `/welcome`, whose link you share by email after someone books.
+address lives on a private page served at a random URL (`WELCOME_SLUG`, see
+step 6), whose link you share by email after someone books — not the
+predictable `/welcome`, since that page has no login and anyone with the
+link can see it.
 **The door combination code is never on the website — put it in the email only.**
 
 ---
@@ -30,7 +33,7 @@ Almost everything you'll want to change lives in **one file**: [`src/config.ts`]
 
 - **Announcements** — edit the `ANNOUNCEMENTS` array.
 - **Sign-up link** — `SIGNUP_URL`.
-- **Your exact address / maps** — the `LOCATION.welcome` block (used only on `/welcome`).
+- **Your exact address / maps** — the `LOCATION.welcome` block (used only on the private welcome page).
 - **Community blurb, movement links** — `COMMUNITY`, `LINKS`.
 
 Longer page copy lives in the matching file under `src/pages/`.
@@ -112,28 +115,32 @@ gh repo create greenhouse-site --private --source=. --push
 Until you set these, the form still works (protected only by the hidden
 honeypot field).
 
-### 6. Set the `/welcome` address (kept OUT of the public repo)
-The exact address is **not** stored in the code — it's read from build-time
-environment variables so it never lands in this public GitHub repo. In
-Cloudflare Pages → **Settings → Variables and Secrets** (type **Plaintext**,
-Production environment), add:
+### 6. Set the private welcome page's address and URL (kept OUT of the public repo)
+The exact address, and the random URL the page lives at, are **not** stored
+in the code — they're read from build-time environment variables so neither
+lands in this public GitHub repo. In Cloudflare Pages → **Settings →
+Variables and Secrets** (type **Plaintext**, Production environment), add:
 
 | Name                   | Value                                             |
 | ---------------------- | ------------------------------------------------- |
 | `WELCOME_ADDRESS_LINE` | `123 Example St.`                                 |
 | `WELCOME_CITY_LINE`    | `Sun Prairie, WI 53590`                           |
 | `WELCOME_MAP_EMBED`    | Google Maps → your address → **Share → Embed a map** → copy the `src="..."` URL |
+| `WELCOME_SLUG`         | A long random string, e.g. output of `openssl rand -hex 8` |
 
 Then **re-deploy** (push, or retry a deployment) so the build bakes them in.
 The Google/Apple directions links are generated automatically from the address.
-When these vars are unset, `/welcome` shows harmless city-level placeholders.
+When these vars are unset, the page falls back to city-level placeholders and
+the path `/welcome` — fine for local preview, but set them for real before
+sharing the site.
 
-> This keeps the address off GitHub. It does **not** password-protect
-> `/welcome` — anyone with the link still sees it. That's fine because the
-> **door combination code is never on the site** — it goes in the email only.
+> This keeps the address off GitHub. It does **not** password-protect the
+> page — anyone with the link still sees it. That's why the page is served
+> at an unguessable random URL instead of `/welcome`, and why the **door
+> combination code is never on the site** — it goes in the email only.
 
 Then, in your 24-7 Prayer booking confirmation email, include:
-- a link to `https://yourdomain.com/welcome`
+- a link to `https://yourdomain.com/<your-WELCOME_SLUG-value>`
 - **the door combination code** (this text only — never on the site)
 
 ### 7. Discoverability

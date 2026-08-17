@@ -1,5 +1,6 @@
 import { defineConfig } from 'astro/config';
 import sitemap from '@astrojs/sitemap';
+import { welcomeSlug } from './scripts/welcome-slug.mjs';
 
 // Canonical URL for SEO tags + the sitemap. Must be the "www" host since
 // the apex (greenhouse247.org) 301-redirects to www at the Cloudflare edge —
@@ -16,9 +17,9 @@ export default defineConfig({
   },
   integrations: [
     sitemap({
-      // Keep the noindex pages out of the sitemap. /welcome is the
-      // unlisted exact-location page; /thank-you is the form success page.
-      filter: (page) => !page.includes('/welcome') && !page.includes('/thank-you'),
+      // Keep the noindex pages out of the sitemap: the unlisted exact-location
+      // page (served at the random WELCOME_SLUG path) and the form success page.
+      filter: (page) => !page.includes(`/${welcomeSlug}`) && !page.includes('/thank-you'),
     }),
   ],
 });
