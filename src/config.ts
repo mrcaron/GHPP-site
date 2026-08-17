@@ -53,7 +53,7 @@ export const ANNOUNCEMENTS = [
       'Join hundreds of prayer rooms around the world for a full week of ' +
       'unbroken prayer. Every hour of every day, someone will be praying — ' +
       'come take your hour.',
-    cta: { label: 'Learn about the Week of Prayer', href: LINKS.weekOfPrayer, external: true },
+    cta: { label: 'Learn about the Week of Prayer', href: '/global-week-of-prayer', external: false },
   },
   {
     tag: 'Lend a hand',

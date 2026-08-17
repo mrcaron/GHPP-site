@@ -1,0 +1,94 @@
+---
+import Base from '../layouts/Base.astro';
+import { SIGNUP_URL, LINKS } from '../config';
+---
+
+<Base
+  title="Global Week of Prayer"
+  description="Join The Greenhouse and prayer rooms around the world for 168 hours of continuous prayer, September 6–13, 2026."
+>
+  <!-- Hero -->
+  <section class="section gwop-hero">
+    <div class="container gwop-hero__inner">
+      <img
+        class="gwop-mark"
+        src="/img/gwp-emblem.png"
+        width="600"
+        height="387"
+        alt="Global Week of Prayer '26 mark"
+      />
+      
+      <p class="center eyebrow">September 6 - 13, 2026</p>
+
+      <h1 class="center">Global Week of Prayer</h1>
+      
+      <p class="lede center mx-auto">
+        Join us with <span style="font-weight:bold"><a href="https://www.24-7prayer.com/weekofprayer/">24-7 Prayer International</a></span> in filling 168 hours of continuous prayer with the whole
+        world from <span style="font-weight:bold">Sept 6&nbsp;&ndash;&nbsp;Sept 13</span>! Every hour of every day
+        that week, someone will be praying in The Greenhouse — take an hour
+        and be part of it.
+      </p>
+      <div class="hero__actions center">
+        <a href={SIGNUP_URL} class="btn btn--primary btn--lg" target="_blank" rel="noopener">
+          Sign up for a prayer slot
+        </a>
+        <a href="/visit" class="btn btn--ghost btn--lg">What to expect →</a>
+      </div>
+      <div class="map-embed video-embed mx-auto">
+        <iframe
+          src="https://www.youtube-nocookie.com/embed/TzHPXJ9vJhU"
+          title="Global Week of Prayer"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          allowfullscreen
+          loading="lazy"
+        ></iframe>
+      </div>
+    </div>
+  </section>
+
+  <!-- About the week -->
+  <section class="section section--paper2">
+    <div class="container center">
+      <p class="eyebrow center">Why a week of prayer</p>
+      <h2>168 hours, one unbroken chain of prayer</h2>
+      <p class="lede mx-auto">
+        Once a year, prayer rooms across the globe — from church halls to
+        living rooms to garage lofts like ours — open their doors around the
+        clock for the Global Week of Prayer. Thousands of people take an
+        hour, so that together the prayer never stops. The Greenhouse is
+        proud to be one small room in that much bigger, worldwide chain.
+      </p>
+      <a href={LINKS.weekOfPrayer} class="btn btn--teal" target="_blank" rel="noopener">
+        Learn more about the Global Week of Prayer
+      </a>
+    </div>
+  </section>
+
+  <!-- CTA band -->
+  <section class="section section--ink center">
+    <div class="container">
+      <h2>Take your hour, Sept 6–13.</h2>
+      <p class="lede mx-auto" style="color: #d8d2c8;">
+        Slots fill quickly during the Week of Prayer — pick an hour that
+        works for you, or bring friends and pray together.
+      </p>
+      <a href={SIGNUP_URL} class="btn btn--primary btn--lg" target="_blank" rel="noopener"
+         style="margin-top: 1rem;">
+        Sign up for a prayer slot
+      </a>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .gwop-hero {
+    background:
+      radial-gradient(120% 90% at 80% -10%, rgba(242, 216, 118, 0.35), transparent 55%),
+      radial-gradient(120% 90% at 0% 110%, rgba(75, 127, 82, 0.18), transparent 55%),
+      var(--paper);
+  }
+  .gwop-hero__inner { max-width: 760px; margin-inline: auto; }
+  .gwop-mark { display: block; width: min(320px, 70vw); height: auto; margin: 0 auto 1.4rem; }
+  .hero__actions { display: flex; flex-wrap: wrap; gap: 0.9rem; justify-content: center; margin-top: 1.6rem; }
+  .video-embed { max-width: 800px; margin-top: 2rem; }
+</style>
