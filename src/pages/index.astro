@@ -68,20 +68,30 @@ import { SITE, SIGNUP_URL, ANNOUNCEMENTS } from '../config';
     </div>
   </section>
 
-  <!-- Gallery placeholder -->
+  <!-- Gallery -->
   <section class="section section--paper2" aria-labelledby="peek-h">
     <div class="container center">
       <p class="eyebrow">A peek inside</p>
-      <h2 id="peek-h">Photos coming soon</h2>
+      <h2 id="peek-h">The room</h2>
       <p class="lede mx-auto" style="margin-bottom: 2rem;">
-        We're putting the finishing touches on the room. Once it's ready,
-        you'll be able to see it here — brown-paper walls covered in prayers,
-        a grass floor, warm light, and a kettle always on.
+        Brown-paper walls covered in prayers, a grass floor, and warm light —
+        more photos coming soon.
       </p>
       <div class="grid grid--3 gallery">
-        <div class="gallery__ph">🌱</div>
-        <div class="gallery__ph">🕊️</div>
-        <div class="gallery__ph">☕</div>
+        <img
+          class="gallery__photo"
+          src="/img/gallery/prayer-room-corner.jpg"
+          alt="The prayer room's brown-paper walls, covered in handwritten prayers and a cross, with a grass floor and two chairs"
+          loading="lazy"
+        />
+        <img
+          class="gallery__photo"
+          src="/img/gallery/prayer-room-chair.jpg"
+          alt="A cozy chair on the grass floor of the prayer room"
+          loading="lazy"
+        />
+        <!-- Third gallery photo coming soon -->
+        <!-- <div class="gallery__ph">☕</div> -->
       </div>
     </div>
   </section>
@@ -132,5 +142,13 @@ import { SITE, SIGNUP_URL, ANNOUNCEMENTS } from '../config';
     aspect-ratio: 4 / 3; font-size: 3rem;
     background: linear-gradient(135deg, #eef1e9, #e7ede4);
     border: 1px dashed var(--line); border-radius: var(--radius); color: #7c8a76;
+  }
+
+  .gallery__photo {
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+    border-radius: var(--radius);
+    border: 1px solid var(--line);
   }
 </style>
