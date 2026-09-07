@@ -68,7 +68,7 @@ const guidelines = [
 
   <!-- Getting in -->
   <section class="section" aria-labelledby="access-h">
-    <div class="container access-grid">
+    <div class="container visit-loc visit-loc--top">
       <div>
         <p class="eyebrow">Getting in</p>
         <h2 id="access-h">How access works</h2>
@@ -113,10 +113,10 @@ const guidelines = [
         <figure class="access-photo">
           <img
             src="/img/visit/coffee-station.jpg"
-            alt="The tea, coffee, and water station: a kettle, mugs, Starbucks Via packets, and a mini fridge"
+            alt="The tea, coffee, and water station: a kettle, mugs, instant coffee packets, and a mini fridge"
             loading="lazy"
           />
-          <figcaption>The tea, coffee &amp; water station.</figcaption>
+          <figcaption>Coffee, tea &amp; water station.</figcaption>
         </figure>
         <figure class="access-photo">
           <img
@@ -124,7 +124,7 @@ const guidelines = [
             alt="The portable AC/heat unit, showing its temperature display and control panel"
             loading="lazy"
           />
-          <figcaption>The AC/heat unit — set it however you like.</figcaption>
+          <figcaption>The AC/heat unit.</figcaption>
         </figure>
         <figure class="access-photo">
           <img
@@ -132,7 +132,7 @@ const guidelines = [
             alt="The prayer room's door at the top of the stairs, with a sun and moon symbol"
             loading="lazy"
           />
-          <figcaption>The door at the top — locks from the inside.</figcaption>
+          <figcaption>The door at the top of the stairs.</figcaption>
         </figure>
       </div>
     </div>
@@ -164,6 +164,10 @@ const guidelines = [
 <style>
   .visit-loc { display: grid; gap: 2rem; align-items: center; }
   @media (min-width: 860px) { .visit-loc { grid-template-columns: 1fr 1fr; } }
+  /* This section pairs a numbered list with a tall portrait photo (rather
+     than a short paragraph with a landscape map), so top- rather than
+     center-align keeps the heading from floating mid-way down the photo. */
+  .visit-loc--top { align-items: start; }
   .notice {
     background: rgba(242, 216, 118, 0.22);
     border: 1px solid rgba(214, 74, 67, 0.25);
@@ -181,8 +185,6 @@ const guidelines = [
   .guidelines { display: grid; gap: 0.9rem; padding-left: 1.2rem; }
   .guidelines li { padding-left: 0.3rem; }
 
-  .access-grid { display: grid; gap: 2rem; align-items: start; }
-  @media (min-width: 860px) { .access-grid { grid-template-columns: 1.3fr 1fr; } }
   .gallery { align-items: start; }
   .access-photo { margin: 0; }
   .access-photo img {
