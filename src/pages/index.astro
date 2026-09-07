@@ -77,7 +77,7 @@ import { SITE, SIGNUP_URL, ANNOUNCEMENTS } from '../config';
         Brown-paper walls covered in prayers, a grass floor, and warm light —
         more photos coming soon.
       </p>
-      <div class="grid grid--2 gallery">
+      <div class="grid gallery">
         <img
           class="gallery__photo gallery__photo--wide"
           src="/img/gallery/prayer-room-ceiling.jpg"
@@ -139,6 +139,12 @@ import { SITE, SIGNUP_URL, ANNOUNCEMENTS } from '../config';
   /* start (not stretch): the two photos have different orientations, so
      each sizes to its own aspect-ratio instead of matching the row height. */
   .gallery { align-items: start; }
+  /* Columns are weighted (not the default equal grid--2 split) so a 16:9
+     and a 9:16 photo, side by side, come out at roughly the same height
+     instead of one towering over the other with dead space beneath it. */
+  @media (min-width: 720px) {
+    .gallery { grid-template-columns: 3fr 1fr; }
+  }
   .gallery__photo {
     width: 100%;
     object-fit: cover;
