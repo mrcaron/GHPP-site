@@ -77,17 +77,17 @@ import { SITE, SIGNUP_URL, ANNOUNCEMENTS } from '../config';
         Brown-paper walls covered in prayers, a grass floor, and warm light —
         more photos coming soon.
       </p>
-      <div class="grid grid--2 gallery">
+      <div class="grid gallery">
         <img
-          class="gallery__photo"
-          src="/img/gallery/prayer-room-corner.jpg"
-          alt="The prayer room's brown-paper walls, covered in handwritten prayers and a cross, with a grass floor and two chairs"
+          class="gallery__photo gallery__photo--wide"
+          src="/img/gallery/prayer-room-ceiling.jpg"
+          alt="Fairy lights and greenery strung across the prayer room's ceiling, with a world map on the wall below"
           loading="lazy"
         />
         <img
-          class="gallery__photo"
-          src="/img/gallery/prayer-room-chair.jpg"
-          alt="A cozy chair on the grass floor of the prayer room"
+          class="gallery__photo gallery__photo--tall"
+          src="/img/gallery/prayer-room-nook.jpg"
+          alt="A cozy chair beside the prayer room's tea and coffee station"
           loading="lazy"
         />
         <!-- Third gallery photo coming soon: switch back to grid--3 when it's added -->
@@ -136,11 +136,23 @@ import { SITE, SIGNUP_URL, ANNOUNCEMENTS } from '../config';
     content: '🌿'; position: absolute; left: 0; top: 0; font-size: 0.9rem;
   }
 
+  /* start (not stretch): the two photos have different orientations, so
+     each sizes to its own aspect-ratio instead of matching the row height. */
+  .gallery { align-items: start; }
+  /* Columns are weighted (not the default equal grid--2 split) so a 16:9
+     and a 9:16 photo, side by side, come out at roughly the same height
+     instead of one towering over the other with dead space beneath it. */
+  @media (min-width: 720px) {
+    .gallery { grid-template-columns: 3fr 1fr; }
+  }
   .gallery__photo {
     width: 100%;
-    aspect-ratio: 9 / 16;
     object-fit: cover;
     border-radius: var(--radius);
     border: 1px solid var(--line);
   }
+  /* Aspect ratio matches each source photo's own orientation, so cover never
+     crops into the subject (the room has both landscape and portrait shots). */
+  .gallery__photo--wide { aspect-ratio: 16 / 9; }
+  .gallery__photo--tall { aspect-ratio: 9 / 16; }
 </style>
