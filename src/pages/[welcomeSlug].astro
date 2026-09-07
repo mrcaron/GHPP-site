@@ -22,7 +22,9 @@ const w = LOCATION.welcome;
       </p>
 
       <div class="notice">
-        <strong>🔑 Garage door code:</strong> {w.doorCode}
+        <strong>⚠️ Temporary change:</strong> The garage keypad is out of
+        order, so it's been switched off — the back door is left <strong>unlocked</strong> instead.
+        See the steps below for how to lock up while you're inside.
       </div>
     </div>
   </section>
@@ -38,8 +40,9 @@ const w = LOCATION.welcome;
             {w.cityLine}
           </p>
           <p>
-            Head to the <strong>back door of the detached garage</strong>, open the
-            deadbolt with your code, and climb the stairs to the loft.
+            Head to the <strong>back door of the detached garage</strong>
+            (it's left unlocked right now — see below), and climb the stairs
+            to the loft.
           </p>
           <div class="dir-buttons">
             <a href={w.googleDirections} class="btn btn--primary" target="_blank" rel="noopener noreferrer">
@@ -71,14 +74,19 @@ const w = LOCATION.welcome;
         street — just please don't block the garage door.
       </li>
       <li>
-        Punch in the code above on the keypad on the garage's back door to
-        let yourself in.
+        The garage's keypad is currently out of order, so it's been turned
+        off — the back door is left unlocked. Just let yourself in, no code
+        needed.
       </li>
       <li>
-        Once inside, lock up behind you if you'd like. You might hear us in
-        the garage below — pulling in the car or grabbing tools for outside —
-        we'll do our best to keep it quiet and honor your time with the
-        Father.
+        Just inside the door, you'll find a <strong>key</strong> on the shelf
+        by the stairs (pictured below). Lock the deadbolt behind you and take
+        the key with you up to the room.
+      </li>
+      <li>
+        You might hear us in the garage below — pulling in the car or
+        grabbing tools for outside — we'll do our best to keep it quiet and
+        honor your time with the Father.
       </li>
       <li>Don't look behind the curtain — we're still cleaning up from the marathon construction push. 😂</li>
       <li>
@@ -96,6 +104,14 @@ const w = LOCATION.welcome;
         you run into any issues during your stay.
       </li>
     </ol>
+    <figure class="key-photo">
+      <img
+        src="/img/welcome/key-location.jpg"
+        alt="The garage key sitting on the wood shelf by the stairs, just inside the back door"
+        loading="lazy"
+      />
+      <figcaption>Where to find the key, just inside the garage door.</figcaption>
+    </figure>
   </section>
 
   <section class="section measure container">
@@ -104,7 +120,11 @@ const w = LOCATION.welcome;
     <ul class="reminders">
       <li>Help yourself to tea, coffee, and water — leave used mugs in the bin.</li>
       <li>Set the AC/heat unit to a comfortable temperature, but please don't move it.</li>
-      <li>When you're done, tidy up, take your trash, and lock the garage's back door.</li>
+      <li>When you're done, tidy up and put any trash in the bin.</li>
+      <li>
+        Unlock the deadbolt, put the key back on the shelf where you found
+        it, and leave the garage's back door unlocked for the next person.
+      </li>
     </ul>
     <p>
       Read the full <a href="/visit">visit guide</a> for what to expect inside.
@@ -133,4 +153,16 @@ const w = LOCATION.welcome;
   .dir-buttons { display: flex; flex-wrap: wrap; gap: 0.8rem; margin-top: 1rem; }
   .reminders, .steps { display: grid; gap: 0.8rem; padding-left: 1.2rem; }
   .steps li { padding-left: 0.3rem; }
+
+  .key-photo { margin: 1.4rem 0 0; }
+  .key-photo img {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+    border-radius: var(--radius);
+    border: 1px solid var(--line);
+  }
+  .key-photo figcaption {
+    margin-top: 0.6rem; font-size: 0.9rem; color: var(--ink-soft); text-align: center;
+  }
 </style>
