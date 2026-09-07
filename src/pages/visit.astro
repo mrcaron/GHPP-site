@@ -68,19 +68,29 @@ const guidelines = [
 
   <!-- Getting in -->
   <section class="section" aria-labelledby="access-h">
-    <div class="container measure">
-      <p class="eyebrow">Getting in</p>
-      <h2 id="access-h">How access works</h2>
-      <ol class="steps">
-        <li>Come to the <strong>back door of the detached garage</strong>.</li>
-        <li>Open the deadbolt using the <strong>combination code</strong> on your private welcome page (linked in your booking email).</li>
-        <li>Inside, climb the <strong>steep stairs</strong> (more like an attic ladder) up to the loft — go slow and treat them like a ladder, not stairs.</li>
-        <li>At the top there's a door you can <strong>lock from the inside</strong>, so the room is yours and secure for your hour.</li>
-      </ol>
-      <p class="muted">
-        Please keep the code and your welcome-page link to yourself, and make
-        sure the garage is locked again when you leave.
-      </p>
+    <div class="container access-grid">
+      <div>
+        <p class="eyebrow">Getting in</p>
+        <h2 id="access-h">How access works</h2>
+        <ol class="steps">
+          <li>Come to the <strong>back door of the detached garage</strong>.</li>
+          <li>Open the deadbolt using the <strong>combination code</strong> on your private welcome page (linked in your booking email).</li>
+          <li>Inside, climb the <strong>steep stairs</strong> (more like an attic ladder) up to the loft — go slow and treat them like a ladder, not stairs.</li>
+          <li>At the top there's a door you can <strong>lock from the inside</strong>, so the room is yours and secure for your hour.</li>
+        </ol>
+        <p class="muted">
+          Please keep the code and your welcome-page link to yourself, and make
+          sure the garage is locked again when you leave.
+        </p>
+      </div>
+      <figure class="access-photo">
+        <img
+          src="/img/visit/stairs.jpg"
+          alt="The steep, narrow stairs up to the prayer room loft, more like an attic ladder than a staircase"
+          loading="lazy"
+        />
+        <figcaption>They're steep and narrow — take them slowly, like a ladder.</figcaption>
+      </figure>
     </div>
   </section>
 
@@ -97,6 +107,33 @@ const guidelines = [
             <p>{e.text}</p>
           </div>
         ))}
+      </div>
+
+      <div class="grid grid--3 gallery" style="margin-top: 2rem;">
+        <figure class="access-photo">
+          <img
+            src="/img/visit/coffee-station.jpg"
+            alt="The tea, coffee, and water station: a kettle, mugs, Starbucks Via packets, and a mini fridge"
+            loading="lazy"
+          />
+          <figcaption>The tea, coffee &amp; water station.</figcaption>
+        </figure>
+        <figure class="access-photo">
+          <img
+            src="/img/visit/ac-unit.jpg"
+            alt="The portable AC/heat unit, showing its temperature display and control panel"
+            loading="lazy"
+          />
+          <figcaption>The AC/heat unit — set it however you like.</figcaption>
+        </figure>
+        <figure class="access-photo">
+          <img
+            src="/img/visit/room-door.jpg"
+            alt="The prayer room's door at the top of the stairs, with a sun and moon symbol"
+            loading="lazy"
+          />
+          <figcaption>The door at the top — locks from the inside.</figcaption>
+        </figure>
       </div>
     </div>
   </section>
@@ -143,4 +180,19 @@ const guidelines = [
   .feature p { margin: 0; color: var(--ink-soft); }
   .guidelines { display: grid; gap: 0.9rem; padding-left: 1.2rem; }
   .guidelines li { padding-left: 0.3rem; }
+
+  .access-grid { display: grid; gap: 2rem; align-items: start; }
+  @media (min-width: 860px) { .access-grid { grid-template-columns: 1.3fr 1fr; } }
+  .gallery { align-items: start; }
+  .access-photo { margin: 0; }
+  .access-photo img {
+    width: 100%;
+    aspect-ratio: 9 / 16;
+    object-fit: cover;
+    border-radius: var(--radius);
+    border: 1px solid var(--line);
+  }
+  .access-photo figcaption {
+    margin-top: 0.6rem; font-size: 0.9rem; color: var(--ink-soft); text-align: center;
+  }
 </style>
