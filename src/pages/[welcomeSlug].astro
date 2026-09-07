@@ -81,7 +81,10 @@ const w = LOCATION.welcome;
       <li>
         Just inside the door, you'll find a <strong>key</strong> on the shelf
         by the stairs (pictured below). Lock the deadbolt behind you and take
-        the key with you up to the room.
+        the key with you up to the room. If it's not there (the person
+        before you may still have it), text {w.phoneHref ? <a href={w.phoneHref}>{w.phoneDisplay}</a> : w.phoneDisplay} and
+        we'll help sort it out — please don't leave the door unattended and
+        unlocked while you go looking for it.
       </li>
       <li>
         You might hear us in the garage below — pulling in the car or
@@ -107,10 +110,10 @@ const w = LOCATION.welcome;
     <figure class="key-photo">
       <img
         src="/img/welcome/key-location.jpg"
-        alt="The garage key sitting on the wood shelf by the stairs, just inside the back door"
+        alt="A small key sitting on the wood shelf by the bottom of the stairs, next to a couple of paper towel rolls, just inside the garage's back door"
         loading="lazy"
       />
-      <figcaption>Where to find the key, just inside the garage door.</figcaption>
+      <figcaption>The key is small — look on the shelf by the stairs, near the paper towels.</figcaption>
     </figure>
   </section>
 
