@@ -129,6 +129,7 @@ Production environment), add:
 | `WELCOME_MAP_EMBED`    | Google Maps → your address → **Share → Embed a map** → copy the `src="..."` URL |
 | `WELCOME_DOOR_CODE`    | The garage keypad code, e.g. `1234`               |
 | `WELCOME_PHONE`        | Contact number shown for "text if there's an issue" |
+| `WELCOME_VIDEO_URL`    | Direct URL to the getting-in walkthrough video (see below) |
 | `WELCOME_SLUG`         | A long random string, e.g. output of `openssl rand -hex 8` |
 
 Then **re-deploy** (push, or retry a deployment) so the build bakes them in.
@@ -151,6 +152,26 @@ sharing the site.
 
 Then, in your 24-7 Prayer booking confirmation email, include a link to
 `https://yourdomain.com/<your-WELCOME_SLUG-value>`.
+
+#### The walkthrough video (`WELCOME_VIDEO_URL`)
+
+The video showing the whole getting-in process is hosted in **Cloudflare
+R2**, not this repo — it's too large for git and, like the address and door
+code, not something to publish publicly.
+
+1. Cloudflare dashboard → **R2** → create a bucket (or reuse one).
+2. Open the bucket → **Upload** → select the video file. A non-obvious
+   object key (e.g. `getting-in-a83f2e.mp4` rather than `video.mp4`) adds a
+   little extra obscurity, matching the unguessable-URL approach used
+   elsewhere on this page — not required, just consistent.
+3. Bucket → **Settings → Public Access** → enable the `r2.dev` subdomain (or
+   connect a custom domain under **Custom Domains** for a cleaner URL). This
+   gives you a public URL like `https://pub-XXXXXXXX.r2.dev/<your-key>.mp4`.
+4. Set that URL as `WELCOME_VIDEO_URL` in Cloudflare Pages, alongside the
+   other `WELCOME_*` variables above, and redeploy.
+
+When `WELCOME_VIDEO_URL` is unset, the video section simply doesn't render —
+the page still works fine with just the written steps.
 
 ### 7. Discoverability
 - The `LocalBusiness`/`PlaceOfWorship` schema and meta tags are already set at
