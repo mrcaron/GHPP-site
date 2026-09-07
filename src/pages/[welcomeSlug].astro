@@ -17,7 +17,7 @@ const w = LOCATION.welcome;
       <p class="eyebrow">You're booked in</p>
       <h1>Welcome to The Greenhouse</h1>
       <p class="lede">
-        Here's the bits you need to know about the prayer room. This page is
+        Here's what you need to know about the prayer room. This page is
         private — please don't share the link.
       </p>
 
@@ -42,10 +42,10 @@ const w = LOCATION.welcome;
             deadbolt with your code, and climb the stairs to the loft.
           </p>
           <div class="dir-buttons">
-            <a href={w.googleDirections} class="btn btn--primary" target="_blank" rel="noopener">
+            <a href={w.googleDirections} class="btn btn--primary" target="_blank" rel="noopener noreferrer">
               Directions in Google Maps
             </a>
-            <a href={w.appleDirections} class="btn btn--teal" target="_blank" rel="noopener">
+            <a href={w.appleDirections} class="btn btn--teal" target="_blank" rel="noopener noreferrer">
               Directions in Apple Maps
             </a>
           </div>
@@ -55,7 +55,7 @@ const w = LOCATION.welcome;
             title={`Map to The Greenhouse in ${SITE.city}`}
             src={w.exactMapEmbed}
             loading="lazy"
-            referrerpolicy="no-referrer-when-downgrade"
+            referrerpolicy="no-referrer"
             allowfullscreen></iframe>
         </div>
       </div>
@@ -71,8 +71,8 @@ const w = LOCATION.welcome;
         street — just please don't block the garage door.
       </li>
       <li>
-        Punch <strong>{w.doorCode}</strong> into the keypad on the garage's
-        back door to let yourself in.
+        Punch in the code above on the keypad on the garage's back door to
+        let yourself in.
       </li>
       <li>
         Once inside, lock up behind you if you'd like. You might hear us in
@@ -80,7 +80,7 @@ const w = LOCATION.welcome;
         we'll do our best to keep it quiet and honor your time with the
         Father.
       </li>
-      <li>Don't look behind the curtain — still cleaning up from the marathon construction push. 😂</li>
+      <li>Don't look behind the curtain — we're still cleaning up from the marathon construction push. 😂</li>
       <li>
         The door to the room is really sticky from the humidity — give it a
         good push to get in, and don't be shy about slamming it closed behind
@@ -88,12 +88,12 @@ const w = LOCATION.welcome;
         coming in.
       </li>
       <li>
-        Those stairs are more like a ladder — please descend them like one,
-        not like stairs, to stay safe.
+        Those stairs are more like a ladder than stairs — climb them slowly
+        and carefully, both up and back down, to stay safe.
       </li>
       <li>
         Text {w.phoneHref ? <a href={w.phoneHref}>{w.phoneDisplay}</a> : w.phoneDisplay} if
-        there's any issues during your stay.
+        you run into any issues during your stay.
       </li>
     </ol>
   </section>
@@ -131,7 +131,6 @@ const w = LOCATION.welcome;
     color: var(--teal-dark); line-height: 1.4;
   }
   .dir-buttons { display: flex; flex-wrap: wrap; gap: 0.8rem; margin-top: 1rem; }
-  .reminders { display: grid; gap: 0.8rem; padding-left: 1.2rem; }
-  .steps { display: grid; gap: 0.8rem; padding-left: 1.2rem; }
+  .reminders, .steps { display: grid; gap: 0.8rem; padding-left: 1.2rem; }
   .steps li { padding-left: 0.3rem; }
 </style>

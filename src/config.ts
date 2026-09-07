@@ -105,7 +105,10 @@ const env = proc?.env ?? {};
 
 const addressLine = env.WELCOME_ADDRESS_LINE ?? '000 Your Street (set WELCOME_ADDRESS_LINE)';
 const cityLine = env.WELCOME_CITY_LINE ?? 'Sun Prairie, WI 53590';
-const doorCode = env.WELCOME_DOOR_CODE ?? '0000 (set WELCOME_DOOR_CODE)';
+// Deliberately NOT a plausible-looking code (e.g. "0000") — if this ever
+// ships unset, it should be obvious to both the admin and a stuck visitor
+// that something's wrong, rather than reading as real instructions.
+const doorCode = env.WELCOME_DOOR_CODE ?? '⚠️ not set — contact the host (WELCOME_DOOR_CODE)';
 const phoneRaw = env.WELCOME_PHONE ?? '';
 const phoneDisplay = phoneRaw || '(set WELCOME_PHONE)';
 const phoneHref = phoneRaw ? `sms:${phoneRaw.replace(/[^0-9+]/g, '')}` : undefined;

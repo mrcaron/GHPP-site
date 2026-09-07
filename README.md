@@ -142,6 +142,12 @@ sharing the site.
 > the page is served at an unguessable random URL instead of `/welcome`,
 > rather than something anyone could type in — treat the link itself as the
 > secret, and only share it after someone books.
+>
+> Neither `WELCOME_SLUG` nor `WELCOME_DOOR_CODE` expire or rotate on their
+> own, and they're the same for every booking. Periodically rotating both
+> (e.g. the physical keypad code on its own schedule, and the URL slug
+> independently, redeploying after each) limits how long an old link or
+> code stays valid if it's ever shared or found.
 
 Then, in your 24-7 Prayer booking confirmation email, include a link to
 `https://yourdomain.com/<your-WELCOME_SLUG-value>`.
