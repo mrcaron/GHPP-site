@@ -115,17 +115,20 @@ gh repo create greenhouse-site --private --source=. --push
 Until you set these, the form still works (protected only by the hidden
 honeypot field).
 
-### 6. Set the private welcome page's address and URL (kept OUT of the public repo)
-The exact address, and the random URL the page lives at, are **not** stored
-in the code — they're read from build-time environment variables so neither
-lands in this public GitHub repo. In Cloudflare Pages → **Settings →
-Variables and Secrets** (type **Plaintext**, Production environment), add:
+### 6. Set the private welcome page's address, door code, and URL (kept OUT of the public repo)
+The exact address, the garage door code, and the random URL the page lives
+at are **not** stored in the code — they're read from build-time
+environment variables so none of it lands in this public GitHub repo. In
+Cloudflare Pages → **Settings → Variables and Secrets** (type **Plaintext**,
+Production environment), add:
 
 | Name                   | Value                                             |
 | ---------------------- | ------------------------------------------------- |
 | `WELCOME_ADDRESS_LINE` | `123 Example St.`                                 |
 | `WELCOME_CITY_LINE`    | `Sun Prairie, WI 53590`                           |
 | `WELCOME_MAP_EMBED`    | Google Maps → your address → **Share → Embed a map** → copy the `src="..."` URL |
+| `WELCOME_DOOR_CODE`    | The garage keypad code, e.g. `1234`               |
+| `WELCOME_PHONE`        | Contact number shown for "text if there's an issue" |
 | `WELCOME_SLUG`         | A long random string, e.g. output of `openssl rand -hex 8` |
 
 Then **re-deploy** (push, or retry a deployment) so the build bakes them in.
@@ -134,14 +137,14 @@ When these vars are unset, the page falls back to city-level placeholders and
 the path `/welcome` — fine for local preview, but set them for real before
 sharing the site.
 
-> This keeps the address off GitHub. It does **not** password-protect the
-> page — anyone with the link still sees it. That's why the page is served
-> at an unguessable random URL instead of `/welcome`, and why the **door
-> combination code is never on the site** — it goes in the email only.
+> This keeps the address and door code off GitHub. It does **not**
+> password-protect the page — anyone with the link still sees it. That's why
+> the page is served at an unguessable random URL instead of `/welcome`,
+> rather than something anyone could type in — treat the link itself as the
+> secret, and only share it after someone books.
 
-Then, in your 24-7 Prayer booking confirmation email, include:
-- a link to `https://yourdomain.com/<your-WELCOME_SLUG-value>`
-- **the door combination code** (this text only — never on the site)
+Then, in your 24-7 Prayer booking confirmation email, include a link to
+`https://yourdomain.com/<your-WELCOME_SLUG-value>`.
 
 ### 7. Discoverability
 - The `LocalBusiness`/`PlaceOfWorship` schema and meta tags are already set at
