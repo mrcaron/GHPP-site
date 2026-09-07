@@ -87,22 +87,31 @@ export const ANNOUNCEMENTS = [
  *   WELCOME_ADDRESS_LINE   e.g. "123 Example St."
  *   WELCOME_CITY_LINE      e.g. "Sun Prairie, WI 53590"
  *   WELCOME_MAP_EMBED      the Google Maps "Embed a map" <iframe src> URL
+ *   WELCOME_DOOR_CODE      the garage keypad code, e.g. "1234"
+ *   WELCOME_PHONE          contact number shown for "text if there's an issue"
  *
  * After adding or changing them, RE-DEPLOY (push, or retry a deployment) so
  * the build picks them up. When unset, the safe city-level placeholders below
  * are used. To preview real values locally, set the same vars in your shell
  * (they are ordinary env vars, read via process.env at build time).
  *
- * NOTE: this keeps the address off GitHub. The page itself has no login —
- * anyone with the link still sees it — so it's also served at an unguessable
- * random URL (WELCOME_SLUG below) instead of the predictable "/welcome",
- * rather than something anyone could type in. The door code stays email-only.
+ * NOTE: this keeps the address (and now the door code) off GitHub. The page
+ * itself has no login — anyone with the link still sees it — so it's also
+ * served at an unguessable random URL (WELCOME_SLUG below) instead of the
+ * predictable "/welcome", rather than something anyone could type in.
  */
 const proc = (globalThis as { process?: { env?: Record<string, string | undefined> } }).process;
 const env = proc?.env ?? {};
 
 const addressLine = env.WELCOME_ADDRESS_LINE ?? '000 Your Street (set WELCOME_ADDRESS_LINE)';
 const cityLine = env.WELCOME_CITY_LINE ?? 'Sun Prairie, WI 53590';
+// Deliberately NOT a plausible-looking code (e.g. "0000") — if this ever
+// ships unset, it should be obvious to both the admin and a stuck visitor
+// that something's wrong, rather than reading as real instructions.
+const doorCode = env.WELCOME_DOOR_CODE ?? '⚠️ not set — contact the host (WELCOME_DOOR_CODE)';
+const phoneRaw = env.WELCOME_PHONE ?? '';
+const phoneDisplay = phoneRaw || '(set WELCOME_PHONE)';
+const phoneHref = phoneRaw ? `sms:${phoneRaw.replace(/[^0-9+]/g, '')}` : undefined;
 
 /**
  * WELCOME_SLUG — the unguessable path segment the private location page is
@@ -131,6 +140,9 @@ export const LOCATION = {
     // Turn-by-turn deep links, derived from the address above.
     googleDirections: `https://www.google.com/maps/dir/?api=1&destination=${directionsDest}`,
     appleDirections: `https://maps.apple.com/?daddr=${directionsDest}`,
+    doorCode,
+    phoneDisplay,
+    phoneHref,
   },
 };
 

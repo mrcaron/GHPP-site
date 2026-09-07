@@ -17,14 +17,12 @@ const w = LOCATION.welcome;
       <p class="eyebrow">You're booked in</p>
       <h1>Welcome to The Greenhouse</h1>
       <p class="lede">
-        Here are the details for your visit. This page is private — please don't
-        share the link. Your door combination code is in the email we sent you,
-        not on this page.
+        Here's what you need to know about the prayer room. This page is
+        private — please don't share the link.
       </p>
 
       <div class="notice">
-        <strong>🔑 Your door code</strong> is in your booking confirmation email.
-        Can't find it? Check spam, or use the contact form and we'll resend it.
+        <strong>🔑 Garage door code:</strong> {w.doorCode}
       </div>
     </div>
   </section>
@@ -44,10 +42,10 @@ const w = LOCATION.welcome;
             deadbolt with your code, and climb the stairs to the loft.
           </p>
           <div class="dir-buttons">
-            <a href={w.googleDirections} class="btn btn--primary" target="_blank" rel="noopener">
+            <a href={w.googleDirections} class="btn btn--primary" target="_blank" rel="noopener noreferrer">
               Directions in Google Maps
             </a>
-            <a href={w.appleDirections} class="btn btn--teal" target="_blank" rel="noopener">
+            <a href={w.appleDirections} class="btn btn--teal" target="_blank" rel="noopener noreferrer">
               Directions in Apple Maps
             </a>
           </div>
@@ -57,7 +55,7 @@ const w = LOCATION.welcome;
             title={`Map to The Greenhouse in ${SITE.city}`}
             src={w.exactMapEmbed}
             loading="lazy"
-            referrerpolicy="no-referrer-when-downgrade"
+            referrerpolicy="no-referrer"
             allowfullscreen></iframe>
         </div>
       </div>
@@ -65,16 +63,56 @@ const w = LOCATION.welcome;
   </section>
 
   <section class="section measure container">
+    <p class="eyebrow">Getting in</p>
+    <h2>What to know before you arrive</h2>
+    <ol class="steps">
+      <li>
+        You can park on the side of the garage next to the garden, or on the
+        street — just please don't block the garage door.
+      </li>
+      <li>
+        Punch in the code above on the keypad on the garage's back door to
+        let yourself in.
+      </li>
+      <li>
+        Once inside, lock up behind you if you'd like. You might hear us in
+        the garage below — pulling in the car or grabbing tools for outside —
+        we'll do our best to keep it quiet and honor your time with the
+        Father.
+      </li>
+      <li>Don't look behind the curtain — we're still cleaning up from the marathon construction push. 😂</li>
+      <li>
+        The door to the room is really sticky from the humidity — give it a
+        good push to get in, and don't be shy about slamming it closed behind
+        you. You can lock it from the inside and not worry about anyone
+        coming in.
+      </li>
+      <li>
+        Those stairs are more like a ladder than stairs — climb them slowly
+        and carefully, both up and back down, to stay safe.
+      </li>
+      <li>
+        Text {w.phoneHref ? <a href={w.phoneHref}>{w.phoneDisplay}</a> : w.phoneDisplay} if
+        you run into any issues during your stay.
+      </li>
+    </ol>
+  </section>
+
+  <section class="section measure container">
     <p class="eyebrow">Before you leave</p>
     <h2>A few reminders</h2>
     <ul class="reminders">
-      <li>Lock the loft door from the inside while you pray, if you'd like privacy.</li>
       <li>Help yourself to tea, coffee, and water — leave used mugs in the bin.</li>
       <li>Set the AC/heat unit to a comfortable temperature, but please don't move it.</li>
       <li>When you're done, tidy up, take your trash, and lock the garage's back door.</li>
     </ul>
     <p>
       Read the full <a href="/visit">visit guide</a> for what to expect inside.
+    </p>
+    <p>
+      This is our first time doing this at scale, and we want it to be a good
+      experience — if anything here would have helped you to know sooner,
+      or wasn't clear, please <a href="/about#contact">let us know</a>.
     </p>
   </section>
 </Base>
@@ -93,5 +131,6 @@ const w = LOCATION.welcome;
     color: var(--teal-dark); line-height: 1.4;
   }
   .dir-buttons { display: flex; flex-wrap: wrap; gap: 0.8rem; margin-top: 1rem; }
-  .reminders { display: grid; gap: 0.8rem; padding-left: 1.2rem; }
+  .reminders, .steps { display: grid; gap: 0.8rem; padding-left: 1.2rem; }
+  .steps li { padding-left: 0.3rem; }
 </style>
