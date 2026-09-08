@@ -89,6 +89,7 @@ export const ANNOUNCEMENTS = [
  *   WELCOME_MAP_EMBED      the Google Maps "Embed a map" <iframe src> URL
  *   WELCOME_DOOR_CODE      the garage keypad code, e.g. "1234"
  *   WELCOME_PHONE          contact number shown for "text if there's an issue"
+ *   WELCOME_VIDEO_URL      direct URL to the walkthrough video (see below)
  *
  * After adding or changing them, RE-DEPLOY (push, or retry a deployment) so
  * the build picks them up. When unset, the safe city-level placeholders below
@@ -112,6 +113,14 @@ const doorCode = env.WELCOME_DOOR_CODE ?? '⚠️ not set — contact the host (
 const phoneRaw = env.WELCOME_PHONE ?? '';
 const phoneDisplay = phoneRaw || '(set WELCOME_PHONE)';
 const phoneHref = phoneRaw ? `sms:${phoneRaw.replace(/[^0-9+]/g, '')}` : undefined;
+/**
+ * WELCOME_VIDEO_URL — a direct link to a walkthrough video of the whole
+ * getting-in process, hosted in Cloudflare R2 (kept out of this public repo
+ * both for size and privacy — see README.md for the upload steps). When
+ * unset, the video section is left out of the page entirely rather than
+ * showing a broken/placeholder player.
+ */
+const videoUrl = env.WELCOME_VIDEO_URL || undefined;
 
 /**
  * WELCOME_SLUG — the unguessable path segment the private location page is
@@ -143,6 +152,7 @@ export const LOCATION = {
     doorCode,
     phoneDisplay,
     phoneHref,
+    videoUrl,
   },
 };
 

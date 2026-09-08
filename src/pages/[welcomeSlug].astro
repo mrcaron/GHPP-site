@@ -68,6 +68,15 @@ const w = LOCATION.welcome;
   <section class="section measure container">
     <p class="eyebrow">Getting in</p>
     <h2>What to know before you arrive</h2>
+    {w.videoUrl && (
+      <figure class="video-wrap">
+        <video src={w.videoUrl} controls preload="metadata" playsinline>
+          Your browser doesn't support embedded video — the steps below cover
+          the same process.
+        </video>
+        <figcaption>A quick walkthrough of the whole process, start to finish.</figcaption>
+      </figure>
+    )}
     <ol class="steps">
       <li>
         You can park on the side of the garage next to the garden, or on the
@@ -168,6 +177,18 @@ const w = LOCATION.welcome;
     border: 1px solid var(--line);
   }
   .key-photo figcaption {
+    margin-top: 0.6rem; font-size: 0.9rem; color: var(--ink-soft); text-align: center;
+  }
+
+  .video-wrap { margin: 1.2rem 0 1.6rem; }
+  .video-wrap video {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    border-radius: var(--radius);
+    border: 1px solid var(--line);
+    background: #000;
+  }
+  .video-wrap figcaption {
     margin-top: 0.6rem; font-size: 0.9rem; color: var(--ink-soft); text-align: center;
   }
 </style>
