@@ -79,12 +79,14 @@ const w = LOCATION.welcome;
         needed.
       </li>
       <li>
-        Just inside the door, you'll find a <strong>key</strong> on the shelf
-        by the stairs (pictured below). Lock the deadbolt behind you and take
-        the key with you up to the room. If it's not there (the person
-        before you may still have it), text {w.phoneHref ? <a href={w.phoneHref}>{w.phoneDisplay}</a> : w.phoneDisplay} and
+        Just inside the door, you'll find two labeled <strong>keys</strong> on
+        the shelf by the stairs (pictured below) — "Main" and "Prayer Room."
+        Lock the main door from inside using the deadbolt latch. Take both
+        keys with you as you head up to the room, so you're secure the whole
+        time. If they're not there (the person before you may still have
+        them), text {w.phoneHref ? <a href={w.phoneHref}>{w.phoneDisplay}</a> : w.phoneDisplay} and
         we'll help sort it out — please don't leave the door unattended and
-        unlocked while you go looking for it.
+        unlocked while you go looking for them.
       </li>
       <li>
         You might hear us in the garage below — pulling in the car or
@@ -95,8 +97,8 @@ const w = LOCATION.welcome;
       <li>
         The door to the room is really sticky from the humidity — give it a
         good push to get in, and don't be shy about slamming it closed behind
-        you. You can lock it from the inside and not worry about anyone
-        coming in.
+        you. Lock it from the inside using the latch on the door handle, keep the keys with you — and don't worry about
+        anyone coming in. Greenhouse staff maintain a copy of the keys in case of emergency.
       </li>
       <li>
         Those stairs are more like a ladder than stairs — climb them slowly
@@ -104,16 +106,16 @@ const w = LOCATION.welcome;
       </li>
       <li>
         Text {w.phoneHref ? <a href={w.phoneHref}>{w.phoneDisplay}</a> : w.phoneDisplay} if
-        you run into any issues during your stay.
+        you run into any issues during your visit.
       </li>
     </ol>
     <figure class="key-photo">
       <img
         src="/img/welcome/key-location.jpg"
-        alt="A small key sitting on the wood shelf by the bottom of the stairs, next to a couple of paper towel rolls, just inside the garage's back door"
+        alt="Two labeled keys on the wood shelf by the stairs, tagged 'Prayer Room' and 'Main'"
         loading="lazy"
       />
-      <figcaption>The key is small — look on the shelf by the stairs, near the paper towels.</figcaption>
+      <figcaption>The two keys, labeled "Prayer Room" and "Main" — look on the shelf by the stairs.</figcaption>
     </figure>
   </section>
 
@@ -125,8 +127,8 @@ const w = LOCATION.welcome;
       <li>Set the AC/heat unit to a comfortable temperature, but please don't move it.</li>
       <li>When you're done, tidy up and put any trash in the bin.</li>
       <li>
-        Unlock the deadbolt, put the key back on the shelf where you found
-        it, and leave the garage's back door unlocked for the next person.
+        Unlock both doors, put both keys back on the shelf where you found
+        them, and leave the garage's back door unlocked for the next person.
       </li>
     </ul>
     <p>
@@ -160,7 +162,7 @@ const w = LOCATION.welcome;
   .key-photo { margin: 1.4rem 0 0; }
   .key-photo img {
     width: 100%;
-    aspect-ratio: 16 / 9;
+    aspect-ratio: 9 / 16;
     object-fit: cover;
     border-radius: var(--radius);
     border: 1px solid var(--line);
