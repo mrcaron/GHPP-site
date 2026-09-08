@@ -70,8 +70,7 @@ const w = LOCATION.welcome;
     <h2>What to know before you arrive</h2>
     {w.videoUrl && (
       <figure class="video-wrap">
-        <video controls preload="metadata" playsinline>
-          <source src={w.videoUrl} type="video/mp4" />
+        <video src={w.videoUrl} controls preload="metadata" playsinline>
           Your browser doesn't support embedded video — the steps below cover
           the same process.
         </video>
