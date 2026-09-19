@@ -44,35 +44,44 @@ export const LINKS = {
 /**
  * Home-page announcements (rendered as cards). Edit / add / remove freely.
  * `cta` is optional; omit it for an announcement with no button.
+ *
+ * The Global Week of Prayer announcements are commented out below now that
+ * the 2026 week (Sept 6–13) has passed and the /global-week-of-prayer page
+ * is disabled. Uncomment and update the dates ahead of next year's event.
  */
-export const ANNOUNCEMENTS = [
-  {
-    tag: 'Global Week of Prayer',
-    title: 'September 6–13 · 168 hours of non-stop prayer',
-    body:
-      'Join hundreds of prayer rooms around the world for a full week of ' +
-      'unbroken prayer. Every hour of every day, someone will be praying — ' +
-      'come take your hour.',
-    cta: { label: 'Learn about the Week of Prayer', href: '/global-week-of-prayer', external: false },
-  },
-  {
-    tag: 'Lend a hand',
-    title: 'Help us build out the room before the Week of Prayer',
-    body:
-      'We need help to paint, build, lay carpet, and prepare the space. ' +
-      'If you would love to be part of creating this place of prayer, ' +
-      'reach out — every pair of hands matters.',
-    cta: { label: 'I want to help', href: '/about#contact', external: false },
-  },
-  {
-    tag: 'Pre-GWOP slots',
-    title: 'Prayer slots are open now',
-    body:
-      'Pre-Global-Week-of-Prayer slots are available. If you would like to ' +
-      'pray in the room ahead of the week, get in touch and we will help ' +
-      'you find a time.',
-    cta: { label: 'Ask about a slot', href: '/about#contact', external: false },
-  },
+export const ANNOUNCEMENTS: {
+  tag: string;
+  title: string;
+  body: string;
+  cta?: { label: string; href: string; external: boolean };
+}[] = [
+  // {
+  //   tag: 'Global Week of Prayer',
+  //   title: 'September 6–13 · 168 hours of non-stop prayer',
+  //   body:
+  //     'Join hundreds of prayer rooms around the world for a full week of ' +
+  //     'unbroken prayer. Every hour of every day, someone will be praying — ' +
+  //     'come take your hour.',
+  //   cta: { label: 'Learn about the Week of Prayer', href: '/global-week-of-prayer', external: false },
+  // },
+  // {
+  //   tag: 'Lend a hand',
+  //   title: 'Help us build out the room before the Week of Prayer',
+  //   body:
+  //     'We need help to paint, build, lay carpet, and prepare the space. ' +
+  //     'If you would love to be part of creating this place of prayer, ' +
+  //     'reach out — every pair of hands matters.',
+  //   cta: { label: 'I want to help', href: '/about#contact', external: false },
+  // },
+  // {
+  //   tag: 'Pre-GWOP slots',
+  //   title: 'Prayer slots are open now',
+  //   body:
+  //     'Pre-Global-Week-of-Prayer slots are available. If you would like to ' +
+  //     'pray in the room ahead of the week, get in touch and we will help ' +
+  //     'you find a time.',
+  //   cta: { label: 'Ask about a slot', href: '/about#contact', external: false },
+  // },
 ];
 
 /**
