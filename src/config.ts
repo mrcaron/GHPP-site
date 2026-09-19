@@ -21,7 +21,7 @@ export const SITE = {
 };
 
 /** The primary call to action — 24-7 Prayer's booking page for this room. */
-export const SIGNUP_URL = 'https://signup.24-7prayer.com/signup/343adb';
+export const SIGNUP_URL = 'https://signup.24-7prayer.com/signup/34b3c3';
 
 /**
  * Cloudflare Turnstile — free, privacy-friendly spam protection for the
