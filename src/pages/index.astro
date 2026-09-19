@@ -27,17 +27,19 @@ import { SITE, SIGNUP_URL, ANNOUNCEMENTS } from '../config';
   </section>
 
   <!-- Announcements -->
-  <section class="section section--paper2" aria-labelledby="ann-h">
-    <div class="container">
-      <p class="eyebrow center">What's happening</p>
-      <h2 id="ann-h" class="center">Announcements</h2>
-      <div class="grid grid--3" style="margin-top: 2rem;">
-        {ANNOUNCEMENTS.map((a) => (
-          <AnnouncementCard tag={a.tag} title={a.title} body={a.body} cta={a.cta} />
-        ))}
+  {ANNOUNCEMENTS.length > 0 && (
+    <section class="section section--paper2" aria-labelledby="ann-h">
+      <div class="container">
+        <p class="eyebrow center">What's happening</p>
+        <h2 id="ann-h" class="center">Announcements</h2>
+        <div class="grid grid--3" style="margin-top: 2rem;">
+          {ANNOUNCEMENTS.map((a) => (
+            <AnnouncementCard tag={a.tag} title={a.title} body={a.body} cta={a.cta} />
+          ))}
+        </div>
       </div>
-    </div>
-  </section>
+    </section>
+  )}
 
   <!-- Why a greenhouse -->
   <section class="section">
