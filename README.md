@@ -129,6 +129,7 @@ Production environment), add:
 | `WELCOME_MAP_EMBED`    | Google Maps → your address → **Share → Embed a map** → copy the `src="..."` URL |
 | `WELCOME_DOOR_CODE`    | The garage keypad code, e.g. `1234`               |
 | `WELCOME_PHONE`        | Contact number shown for "text if there's an issue" |
+| `WELCOME_VIDEO_URL`    | Direct URL to the getting-in walkthrough video (see below) |
 | `WELCOME_SLUG`         | A long random string, e.g. output of `openssl rand -hex 8` |
 
 Then **re-deploy** (push, or retry a deployment) so the build bakes them in.
@@ -148,9 +149,54 @@ sharing the site.
 > (e.g. the physical keypad code on its own schedule, and the URL slug
 > independently, redeploying after each) limits how long an old link or
 > code stays valid if it's ever shared or found.
+>
+> `WELCOME_VIDEO_URL` (below) has the same property, but rotating the slug
+> does **not** rotate it — the R2 URL keeps working on its own regardless of
+> what page links to it. If the video URL is ever shared or found, replace
+> the object in R2 (a new upload gets a new URL; deleting the old object
+> invalidates the old one) rather than assuming a slug rotation covers it.
 
 Then, in your 24-7 Prayer booking confirmation email, include a link to
 `https://yourdomain.com/<your-WELCOME_SLUG-value>`.
+
+#### The walkthrough video (`WELCOME_VIDEO_URL`)
+
+The video showing the whole getting-in process is hosted in **Cloudflare
+R2**, not this repo — it's too large for git and, like the address and door
+code, not something to publish publicly.
+
+1. Prefer an **`.mp4` file (H.264 video)** over `.mov` if you can — it plays
+   natively in every browser, not just Safari. Phone-recorded video is
+   usually much higher bitrate than a walkthrough needs; re-exporting at
+   720p (e.g. in iMovie: Share → Save Video → choose 720p) both improves
+   compatibility and shrinks the file a lot.
+2. **The Cloudflare dashboard's browser upload caps out around 300MB** —
+   larger files fail with "exceeds the 300 MB limit." If your file is
+   under that after step 1, skip to step 3. If it's still over, either
+   compress it further, or upload from a computer via `rclone` or the
+   `aws` CLI against R2's S3-compatible API (both do automatic multipart
+   upload, so the dashboard's cap doesn't apply) — see Cloudflare's R2 docs
+   for the one-time API token setup.
+3. Cloudflare dashboard → **R2** → create a bucket (or reuse one) → open it
+   → **Upload** → select the video file. A non-obvious object key (e.g.
+   `getting-in-a83f2e.mp4` rather than `video.mp4`) adds a little extra
+   obscurity, matching the unguessable-URL approach used elsewhere on this
+   page — not required, just consistent.
+4. Bucket → **Settings → Public Access** → enable the `r2.dev` subdomain (or
+   connect a custom domain under **Custom Domains** for a cleaner URL). This
+   gives you a public URL like `https://pub-XXXXXXXX.r2.dev/<your-key>.mp4`.
+5. Set that URL as `WELCOME_VIDEO_URL` in Cloudflare Pages, alongside the
+   other `WELCOME_*` variables above, and redeploy.
+
+When `WELCOME_VIDEO_URL` is unset, the video section simply doesn't render —
+the page still works fine with just the written steps.
+
+> Like the door code and address, this makes the video reachable by anyone
+> who has the URL, indefinitely — the site is 100% static with no server to
+> enforce auth or expiring links. That's a reasonable tradeoff here (same
+> model as the rest of this page), but it's worth knowing this is
+> obscurity, not real access control: don't treat the R2 URL as safe to
+> post anywhere public.
 
 ### 7. Discoverability
 - The `LocalBusiness`/`PlaceOfWorship` schema and meta tags are already set at
