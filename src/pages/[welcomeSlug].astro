@@ -70,8 +70,8 @@ const w = LOCATION.welcome;
     <h2>What to know before you arrive</h2>
     <ol class="steps">
       <li>
-        You can park on the side of the garage next to the garden, or on the
-        street — just please don't block the garage door.
+        You can park on the street next to the house and garage, please don't
+        block the garage door.
       </li>
       <li>
         The garage's keypad is currently out of order, so it's been turned
@@ -79,14 +79,12 @@ const w = LOCATION.welcome;
         needed.
       </li>
       <li>
-        Just inside the door, you'll find two labeled <strong>keys</strong> on
-        the shelf by the stairs (pictured below) — "Main" and "Prayer Room."
-        Lock the main door from inside using the deadbolt latch. Take both
-        keys with you as you head up to the room, so you're secure the whole
-        time. If they're not there (the person before you may still have
-        them), text {w.phoneHref ? <a href={w.phoneHref}>{w.phoneDisplay}</a> : w.phoneDisplay} and
-        we'll help sort it out — please don't leave the door unattended and
-        unlocked while you go looking for them.
+        Just inside the door you'll find two <strong>keys</strong> on a ring
+        with an Apple AirTag. Take them with you into the room and lock the
+        door, no one will enter while you are present. If you have any
+        difficulty please text {w.phoneHref ? <a href={w.phoneHref}>{w.phoneDisplay}</a> : w.phoneDisplay} and
+        we'll help sort it out. Please do not leave the keys in the prayer
+        room when you're finished, but return them where you picked them up.
       </li>
       <li>
         You might hear us in the garage below — pulling in the car or
@@ -109,14 +107,6 @@ const w = LOCATION.welcome;
         you run into any issues during your visit.
       </li>
     </ol>
-    <figure class="key-photo">
-      <img
-        src="/img/welcome/key-location.jpg"
-        alt="Two labeled keys on the wood shelf by the stairs, tagged 'Prayer Room' and 'Main'"
-        loading="lazy"
-      />
-      <figcaption>The two keys, labeled "Prayer Room" and "Main" — look on the shelf by the stairs.</figcaption>
-    </figure>
   </section>
 
   <section class="section measure container">
